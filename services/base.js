@@ -36,7 +36,7 @@ export function baseCrud(type) {
                     console.log(error);
                     res.status(500).json({
                         success: false,
-                        message: 'Có lỗi xảy ra',
+                        message: 'Có lỗi xảy ra khi get detail',
                         error: error.message,
                     });
                 });
