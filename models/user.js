@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
     age: {
         type: Number,
         required: false
+    },
+    idLoai: {
+        type: String,
+        required: false
+    },
+    idChucVu: {
+        type: String,
+        required: false
     }
 });
 

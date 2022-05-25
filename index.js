@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import logger from 'morgan';
 import userRoutes from './routes/user';
+import loaiNguoiDungRoutes from './routes/dm-loainguoidung';
+import chucVuRoutes from './routes/dm-chucvu';
 import fileRoutes from './routes/file';
 import cors from 'cors';
 const app = express();
@@ -19,6 +21,8 @@ app.get('/', (request, respond) => {
   });
 });
 app.use('/', userRoutes);
+app.use('/', loaiNguoiDungRoutes);
+app.use('/', chucVuRoutes);
 app.use('/', fileRoutes);
 app.listen(port, (request, respond) => {
   console.log(`Our server is live on ${port}. Yay!`);

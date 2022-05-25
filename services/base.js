@@ -118,7 +118,7 @@ export function baseCrud(type) {
             }
             Promise.all([
                 type.count(filters),
-                type.find(filters, 'age username ten', { skip, limit })
+                type.find(filters, '', { skip, limit })
             ]).then(([totalRecord, allUser]) => {
                 return res.status(200).json({
                     success: true,
