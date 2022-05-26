@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     idChucVu: {
         type: String,
         required: false
+    },
+    idChucVuKiemNhiem: {
+        type: Array,
+        required: false
     }
 });
 
