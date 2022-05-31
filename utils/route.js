@@ -7,3 +7,4 @@ export function addRoute(router, tableName, baseController) {
     router.post(`/${tableName}/getAllByFilter`, baseController.getAllByFilter);
     router.post(`/${tableName}/getData`, baseController.getData);
 }
+
