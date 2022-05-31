@@ -28,9 +28,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    idChucVuKiemNhiem: {
-        type: Array,
-        required: false
+    password: {
+        type: String,
+        required: true
     }
 });
 
