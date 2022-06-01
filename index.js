@@ -1,13 +1,10 @@
-import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
+import express from 'express';
+import glob from 'glob';
 import mongoose from 'mongoose';
 import logger from 'morgan';
-import userRoutes from './routes/user';
-import loaiNguoiDungRoutes from './routes/dm-loainguoidung';
-import chucVuRoutes from './routes/dm-chucvu';
-import fileRoutes from './routes/file';
-import gioiTinhRoutes from './routes/dm-gioitinh';
-import cors from 'cors';
+
 const app = express();
 const port = 5000;
 
@@ -21,11 +18,12 @@ app.get('/', (request, respond) => {
     message: 'Welcome to Project Support',
   });
 });
-app.use('/', userRoutes);
-app.use('/', loaiNguoiDungRoutes);
-app.use('/', chucVuRoutes);
-app.use('/', fileRoutes);
-app.use('/', gioiTinhRoutes);
+
+await glob.sync('./routes/*.js').forEach(async (file) => {
+  const routeModule = await import(file);
+  app.use('/', routeModule.default);
+});
+
 app.listen(port, (request, respond) => {
   console.log(`Our server is live on ${port}. Yay!`);
 });

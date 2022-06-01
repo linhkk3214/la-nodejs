@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-const loaiNguoiDungSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     ten: {
         type: String,
@@ -18,4 +18,4 @@ const loaiNguoiDungSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('DM_LoaiNguoiDung', loaiNguoiDungSchema);
+export default mongoose.model('DM_LoaiNguoiDung', schema);

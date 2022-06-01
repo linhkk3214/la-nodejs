@@ -1,5 +1,5 @@
 
-import model from '../models/dm-chucvu';
+import model from '../models/address';
 import { baseCrud } from '../services/base';
 
 export function crud() {

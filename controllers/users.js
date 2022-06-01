@@ -1,7 +1,7 @@
 
-import User from '../models/user';
+import model from '../models/users';
 import { baseCrud } from '../services/base';
 
 export function crud() {
-    return baseCrud(User);
+    return baseCrud(model);
 }

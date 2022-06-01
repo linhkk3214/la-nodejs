@@ -4,18 +4,22 @@ mongoose.Promise = global.Promise;
 
 const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    ten: {
+    Level: {
+        type: Number,
+        required: true,
+    },
+    IdRoot: {
         type: String,
         required: true,
     },
-    ma: {
-        type: String,
-        required: true,
-    },
-    idLoaiNguoiDung: {
+    ParentId: {
         type: String,
         required: false
+    },
+    Ten: {
+        type: String,
+        required: true
     }
 });
 
-export default mongoose.model('DM_ChucVu', schema);
+export default mongoose.model('temp_address', schema);

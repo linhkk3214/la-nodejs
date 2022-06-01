@@ -1,3 +1,3 @@
 import { addRoute } from '../utils/route';
-const router = await addRoute('dm_chucvu');
+const router = await addRoute('address');
 export default router;
