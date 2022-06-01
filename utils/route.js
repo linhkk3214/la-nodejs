@@ -15,7 +15,7 @@ export async function addRoute(tableName) {
     
     router.post(`/${tableName}/getAllByFilter`, controller.getAllByFilter);
     router.post(`/${tableName}/getData`, controller.getData);
-    router.post(`/${tableName}/GetDetailByFilter`, baseController.getDetailByFilter);
+    router.post(`/${tableName}/GetDetailByFilter`, controller.getDetailByFilter);
     return router;
 }
 
