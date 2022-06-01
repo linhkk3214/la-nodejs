@@ -132,7 +132,26 @@ export function baseCrud(type) {
                     error: err.message,
                 });
             });
-        }
+        },
+        getDetailByFilter: function (req, res) {
+            const filters = getFilterFromBody(req.body.filters);
+            return type
+                .findOne(filters)
+                .then((itemUser) => {
+                    return res.status(200).json({
+                        success: true,
+                        data: itemUser,
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                    res.status(500).json({
+                        success: false,
+                        message: 'Có lỗi xảy ra khi get detail',
+                        error: error.message,
+                    });
+                });
+        },
     }
 }
 
