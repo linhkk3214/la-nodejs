@@ -6,9 +6,10 @@ import userRoutes from './routes/user';
 import loaiNguoiDungRoutes from './routes/dm-loainguoidung';
 import chucVuRoutes from './routes/dm-chucvu';
 import fileRoutes from './routes/file';
+import gioiTinhRoutes from './routes/dm-gioitinh';
 import cors from 'cors';
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.use('/', userRoutes);
 app.use('/', loaiNguoiDungRoutes);
 app.use('/', chucVuRoutes);
 app.use('/', fileRoutes);
+app.use('/', gioiTinhRoutes);
 app.listen(port, (request, respond) => {
   console.log(`Our server is live on ${port}. Yay!`);
 });
