@@ -31,6 +31,18 @@ const schema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    idTinh: {
+        type: String,
+        required: true
+    },
+    idHuyen: {
+        type: String,
+        required: true
+    },
+    idXa: {
+        type: String,
+        required: true
     }
 });
 

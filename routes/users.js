@@ -1,5 +1,8 @@
 import { addRoute } from '../utils/route';
-const router = await addRoute('users');
+const tableName = 'users';
+const router = await addRoute(tableName);
 // Custom route here
-// router.get('...', ...)
+// router.post(`${tableName}`, (req, res, next) => {
+
+// });
 export default router;
