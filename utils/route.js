@@ -12,8 +12,10 @@ export async function addRoute(tableName) {
     router.put(`/${tableName}/:id`, controller.update);
     router.delete(`/${tableName}/:id`, controller.delete);
     router.get(`/${tableName}`, controller.getAll);
+    
     router.post(`/${tableName}/getAllByFilter`, controller.getAllByFilter);
     router.post(`/${tableName}/getData`, controller.getData);
+    router.post(`/${tableName}/GetDetailByFilter`, baseController.getDetailByFilter);
     return router;
 }
 
