@@ -93,8 +93,8 @@ export function baseCrud(type) {
                 });
         },
         getAllByFilter: function (req, res) {
-            const filters = getFilterFromBody(req.body);
-            type.find(filters)
+            const query = createQueryFromBody(type, req.body);
+            query
                 .then((lstData) => {
                     return res.status(200).json({
                         success: true,
@@ -110,15 +110,10 @@ export function baseCrud(type) {
                 });
         },
         getData: function async(req, res) {
-            const filters = getFilterFromBody(req.body.filters);
-            let skip = 0, limit = 15;
-            if (req.body.pageInfo) {
-                skip = ((req.body.pageInfo.page - 1) * req.body.pageInfo.pageSize);
-                limit = req.body.pageInfo.pageSize;
-            }
+            const [query, filters] = createQueryWithFilterFromBody(type, req.body);
             Promise.all([
                 type.count(filters),
-                type.find(filters, '', { skip, limit })
+                query
             ]).then(([totalRecord, allUser]) => {
                 return res.status(200).json({
                     success: true,
@@ -153,6 +148,32 @@ export function baseCrud(type) {
                 });
         },
     }
+}
+
+function createQueryFromBody(type, body) {
+    const [query] = createQueryWithFilterFromBody(type, body);
+    return query;
+}
+
+function createQueryWithFilterFromBody(type, body) {
+    let filters = {};
+    if (body.filters) {
+        filters = getFilterFromBody(body.filters);
+    }
+    let query = type.find(filters);
+    if (body.sorts && body.sorts.length) {
+        const sorts = {};
+        body.sorts.forEach(sort => {
+            sorts[sort.field] = sort.dir ? sort.dir : 1
+        });
+        query = query.sort(sorts);
+    }
+    if (body.pageInfo) {
+        const skip = ((body.pageInfo.page - 1) * body.pageInfo.pageSize);
+        const limit = body.pageInfo.pageSize;
+        query = query.skip(skip).limit(limit);
+    }
+    return [query, filters];
 }
 
 function getFilterFromBody(filterFromBody, logic = 'and') {
