@@ -1,9 +1,9 @@
 import express from 'express';
-import { crud } from '../controllers/dm-chucvu';
+import { crud } from '../controllers/dm-httuyensinh';
 import { addRoute } from '../utils/route';
 
 const baseController = crud();
 const router = express.Router();
-addRoute(router, 'dm_chucvu', baseController);
+addRoute(router, 'dm_httuyensinh', baseController);
 
 export default router;
