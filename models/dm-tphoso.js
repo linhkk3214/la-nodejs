@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-const tpHoSoSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     ten: {
         type: String
@@ -37,4 +37,4 @@ const tpHoSoSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('DM_TpHoSo', tpHoSoSchema);
+export default mongoose.model('DM_TpHoSo', schema);

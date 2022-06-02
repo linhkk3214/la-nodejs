@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-const loaiGiayToSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     ten: {
         type: String,
@@ -14,4 +14,4 @@ const loaiGiayToSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('DM_LoaiGiayTo', loaiGiayToSchema);
+export default mongoose.model('DM_LoaiGiayTo', schema);

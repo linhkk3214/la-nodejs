@@ -1,9 +1,8 @@
-import express from 'express';
-import { crud } from '../controllers/dm-httuyensinh';
 import { addRoute } from '../utils/route';
+const tableName = 'dm_httuyensinh';
+const router = await addRoute(tableName);
+// Custom route here
+// router.post(`${tableName}`, (req, res, next) => {
 
-const baseController = crud();
-const router = express.Router();
-addRoute(router, 'dm_httuyensinh', baseController);
-
+// });
 export default router;

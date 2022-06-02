@@ -4,22 +4,22 @@ mongoose.Promise = global.Promise;
 
 const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    Level: {
+    idOld: {
+        type: String,
+        required: true,
+    },
+    level: {
         type: Number,
         required: true,
     },
-    IdRoot: {
+    parentId: {
         type: String,
-        required: true,
+        required: false,
     },
-    ParentId: {
-        type: String,
-        required: false
-    },
-    Ten: {
+    ten: {
         type: String,
         required: true
     }
 });
 
-export default mongoose.model('temp_address', schema);
+export default mongoose.model('address', schema);
