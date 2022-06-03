@@ -225,14 +225,3 @@ function getFilterItem(filters, item) {
         }
     }
 }
-
-function saveFile(model, field) {
-    const lstFile = model[field];
-    if (!lstFile || !lstFile.length) return;
-    const lstFileNotYetSave = [];
-    lstFile.forEach(item => {
-        if (!item._id) {
-            // lstFileNotYetSave.ou
-        }
-    });
-}
