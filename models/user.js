@@ -39,6 +39,10 @@ const schema = new mongoose.Schema({
     idHuyen: {
         type: String,
         required: false
+    },
+    idXa: {
+        type: String,
+        required: false
     }
 });
 
