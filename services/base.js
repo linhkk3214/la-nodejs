@@ -226,48 +226,13 @@ function getFilterItem(filters, item) {
     }
 }
 
-function getFilterFromBody2(filterFromBody) {
-    const filters = {};
-    if (filterFromBody) {
-        filters['$and'] = [];
-        filterFromBody.forEach(item => {
-            getFilterItem2(filters['$and'], item);
-        });
-    }
-    return filters;
-}
-
-function getFilterItem2(filters, item) {
-    if (item.logic) {
-        const childFilter = { [item.logic]: getFilterFromBody2(item.filters) };
-        filters.push(childFilter);
-    }
-    else {
-        if (item.operator == 'in') {
-            filters.push({
-                [item.field]: { "$in": JSON.parse(item.value) }
-            });
+function saveFile(model, field) {
+    const lstFile = model[field];
+    if (!lstFile || !lstFile.length) return;
+    const lstFileNotYetSave = [];
+    lstFile.forEach(item => {
+        if (!item._id) {
+            // lstFileNotYetSave.ou
         }
-        else if (item.operator == 'contains') {
-            filters.push({
-                [item.field]: {
-                    "$regex": `${JSON.parse(item.value)}`,
-                    "$options": "i"
-                }
-            });
-        }
-        else if (item.operator == 'gt' || item.operator == 'gte'
-            || item.operator == 'lt' || item.operator == 'lte') {
-            filters.push({
-                [item.field]: {
-                    [`$${item.operator}`]: `${JSON.parse(item.value)}`,
-                }
-            });
-        }
-        else {
-            filters.push({
-                [item.field]: `${JSON.parse(item.value)}`
-            });
-        }
-    }
+    });
 }

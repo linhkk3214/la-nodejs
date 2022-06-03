@@ -12,6 +12,10 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+        required: false
+    },
     dob: {
         type: Date,
         required: false
