@@ -29,7 +29,7 @@ const schema = new mongoose.Schema({
         type: String
     },
     dsTaiLieu: {
-        type: String,
+        type: Array,
         required: false
     }
 });

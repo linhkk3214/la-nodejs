@@ -4,18 +4,22 @@ mongoose.Promise = global.Promise;
 
 const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    ten: {
-        type: String,
-        required: true,
-    },
     ma: {
         type: String,
-        required: true,
+        required: true
     },
-    moTa: {
+    ten: {
         type: String,
-        required: false
+        required: true
+    },
+    namHocBatDau: {
+        type: Number,
+        required: true
+    },
+    idHeDaoTao: {
+        type: String,
+        required: true
     }
 });
 
-export default mongoose.model('DM_GioiTinh', schema);
+export default mongoose.model('DM_KhoaHoc', schema);

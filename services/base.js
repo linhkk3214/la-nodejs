@@ -42,7 +42,8 @@ export function baseCrud(type) {
                 });
         },
         update: function (req, res) {
-            type.updateOne({ _id: req.params.id }, { $set: { ...req.body } })
+            const jsonUpdate = { ...req.body };
+            type.updateOne({ _id: req.params.id }, { $set: jsonUpdate })
                 .then((newUser) => {
                     return res.status(200).json({
                         success: true,

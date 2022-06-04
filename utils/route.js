@@ -1,18 +1,20 @@
 import express from 'express';
 import { baseCrud } from '../services/base';
 
-export async function addRoute(tableName) {
+export async function addRoute(tableName, modifyController) {
     const router = express.Router();
     const tableNamePath = tableName.replace('_', '-');
     const model = await import(`../models/${tableNamePath}.js`);
     const controller = baseCrud(model.default);
-
+    if (modifyController) {
+        modifyController(controller);
+    }
     router.post(`/${tableName}`, controller.insert);
     router.get(`/${tableName}/:id`, controller.getDetail);
     router.put(`/${tableName}/:id`, controller.update);
     router.delete(`/${tableName}/:id`, controller.delete);
     router.get(`/${tableName}`, controller.getAll);
-    
+
     router.post(`/${tableName}/getAllByFilter`, controller.getAllByFilter);
     router.post(`/${tableName}/getData`, controller.getData);
     router.post(`/${tableName}/GetDetailByFilter`, controller.getDetailByFilter);

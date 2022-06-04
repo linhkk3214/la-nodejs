@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     ma: {
         type: String,
-        required: true, //cái required này không cần khai báo cũng được đúng hem ạ vì ở bên angular anh đã code rùi có cái 
+        required: true,
     },
     ten: {
         type: String,
