@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 export function baseCrud(type) {
     return {
+        beforeInsert: (data) => { },
         insert: function (req, res) {
             const user = new type({
                 _id: mongoose.Types.ObjectId(),
                 ...req.body
             });
+            this.beforeInsert(user);
             return user
                 .save()
                 .then((newUser) => {
@@ -41,8 +43,10 @@ export function baseCrud(type) {
                     });
                 });
         },
+        beforeUpdate: (data) => { },
         update: function (req, res) {
             const jsonUpdate = { ...req.body };
+            this.beforeUpdate(jsonUpdate);
             type.updateOne({ _id: req.params.id }, { $set: jsonUpdate })
                 .then((newUser) => {
                     return res.status(200).json({
