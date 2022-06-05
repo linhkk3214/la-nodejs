@@ -1,0 +1,16 @@
+import { ObjectId } from 'mongodb';
+import { Schema, model } from 'mongoose';
+import { IBaseModel } from './base-model';
+
+export interface IDM_LoaiGiayTo extends IBaseModel {
+    ten: String,
+    ma: String,
+}
+
+const schema = new Schema<IDM_LoaiGiayTo>({
+    _id: ObjectId,
+    ten: { type: String, required: true },
+    ma: { type: String, required: true },
+});
+
+export default model<IDM_LoaiGiayTo>('DM_LoaiGiayTo', schema);

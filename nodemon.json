@@ -1,0 +1,7 @@
+{
+    "watch": [""],
+    "ext": "ts",
+    "1--exec": "tsc && node dist/index.js",
+    "2--exec": "tsc && ts-node src/index.ts",
+    "exec": "tsc && ts-node src/index.ts"
+}
