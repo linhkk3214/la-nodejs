@@ -20,7 +20,7 @@ const schema = new Schema<IDotNhapHoc>({
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     idHeDaoTao: { type: String, required: true },
-    idKhoaHoc: { type: Number, required: true },
+    idKhoaHoc: { type: String, required: true },
     timeBd: { type: Date, required: false },
     timeKt: { type: Date, required: false },
     idCoSoDaoTao: { type: String, required: false },

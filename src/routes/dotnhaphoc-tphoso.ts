@@ -1,7 +1,7 @@
 import { addBaseRoute } from '../base/route-util';
-import { DotNhapHocController } from '../controller/dotnhaphoc';
-const tableName = 'DotNhapHoc';
-const controller = new DotNhapHocController();
+import { DotNhapHoc_TpHoSoController } from '../controller/dotnhaphoc-tphoso';
+const tableName = 'DotNhapHoc_TpHoSo';
+const controller = new DotNhapHoc_TpHoSoController();
 
 const router = addBaseRoute(tableName, controller);
 // Custom route here
