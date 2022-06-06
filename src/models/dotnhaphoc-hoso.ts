@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import { Schema, model } from 'mongoose';
 import { IBaseModel } from './base-model';
 
-export interface IDM_TpHoSo extends IBaseModel {
+export interface IDotNhapHoc_HoSo extends IBaseModel {
     idDotNhapHoc: String,
     idTpHoSo: String,
     soLuongBanChinh: Number,
@@ -10,7 +10,7 @@ export interface IDM_TpHoSo extends IBaseModel {
     soLuongBanCC: Number,
 }
 
-const schema = new Schema<IDM_TpHoSo>({
+const schema = new Schema<IDotNhapHoc_HoSo>({
     _id: ObjectId,
     idDotNhapHoc: { type: String, required: true },
     idTpHoSo: { type: String, required: true },
@@ -19,4 +19,4 @@ const schema = new Schema<IDM_TpHoSo>({
     soLuongBanCC: { type: Number, required: true },
 });
 
-export default model<IDM_TpHoSo>('DM_TpHoSo', schema);
+export default model<IDotNhapHoc_HoSo>('DotNhapHoc_HoSo', schema);
