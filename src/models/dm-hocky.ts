@@ -3,6 +3,7 @@ import { Schema, model } from 'mongoose';
 import { IBaseModel } from './base-model';
 
 export interface IDM_HocKy extends IBaseModel {
+    idHeDaoTao: String,
     idNamHoc: String,
     ten: String,
     tenRutGon?: String,
@@ -14,6 +15,7 @@ export interface IDM_HocKy extends IBaseModel {
 
 const schema = new Schema<IDM_HocKy>({
     _id: ObjectId,
+    idHeDaoTao: { type: String, required: true },
     idNamHoc: { type: String, required: true },
     ten: { type: String, required: true },
     tenRutGon: { type: String, required: false },
