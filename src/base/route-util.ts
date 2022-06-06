@@ -20,9 +20,9 @@ export async function registerRootRoute(app: any) {
         });
     });
 
-    await glob.sync('./src/routes/*.ts').forEach(async (file) => {
-        console.log(`xxx_${file}`);
-    });
+    // await glob.sync('./src/routes/*.ts').forEach(async (file) => {
+    //     console.log(`xxx_${file}`);
+    // });
 }
 
 export function addBaseRoute(tableName: string, controller: BaseController): Router {

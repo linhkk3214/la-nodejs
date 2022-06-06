@@ -5,7 +5,7 @@ import { IBaseModel } from './base-model';
 export interface IDM_KhoaHoc extends IBaseModel {
     ten: String,
     ma: String,
-    namHocBatdau: Number,
+    namHocBatDau: Number,
     idHeDaoTao: String
 }
 
@@ -13,7 +13,7 @@ const schema = new Schema<IDM_KhoaHoc>({
     _id: ObjectId,
     ten: { type: String, required: true },
     ma: { type: String, required: true },
-    namHocBatdau: { type: Number, required: true },
+    namHocBatDau: { type: Number, required: true },
     idHeDaoTao: { type: String, required: true },
 });
 

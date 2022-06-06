@@ -10,10 +10,12 @@ export class BaseController {
             _id: new mongoose.Types.ObjectId(),
             ...req.body,
         });
+
         this.beforeSave(user);
         return user
             .save()
             .then((newUser) => {
+                this.afterSave(newUser);
                 return res.status(200).json({
                     success: true,
                     data: newUser,
@@ -162,6 +164,10 @@ export class BaseController {
     };
 
     beforeSave(model) {
+
+    }
+
+    afterSave(model) {
 
     }
 
