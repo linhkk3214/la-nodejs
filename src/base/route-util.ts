@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import fs from 'fs';
+import glob from 'glob';
 import { BaseController } from './base-controller';
 import { ColorReference } from './const';
 const arrPath = __dirname.split('\\');
@@ -17,6 +18,10 @@ export async function registerRootRoute(app: any) {
             console.info(ColorReference.FgGreen, `Register route /routes/${file}`, ColorReference.Reset);
             app.use('/', routeModule.default);
         });
+    });
+
+    await glob.sync('./src/routes/*.ts').forEach(async (file) => {
+        console.log(`xxx_${file}`);
     });
 }
 
