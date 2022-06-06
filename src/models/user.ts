@@ -4,6 +4,8 @@ import { IBaseModel } from './base-model';
 
 export interface IUser extends IBaseModel {
     ten: String,
+    ho: String,
+    hoVaTen: string;
     avatar?: String,
     username: String,
     password: String,
@@ -13,11 +15,16 @@ export interface IUser extends IBaseModel {
     idTinh?: String,
     idHuyen?: String,
     idXa?: String,
+    idDanToc?: String,
+    idTonGiao?: String,
+    idQuocTich?: String,
 }
 
 const schema = new Schema<IUser>({
     _id: ObjectId,
     ten: { type: String, required: true },
+    ho: { type: String, required: true },
+    hoVaTen: { type: String, required: true },
     avatar: { type: String, required: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
@@ -27,6 +34,9 @@ const schema = new Schema<IUser>({
     idTinh: { type: String, required: false },
     idHuyen: { type: String, required: false },
     idXa: { type: String, required: false },
+    idDanToc: { type: String, required: false },
+    idTonGiao: { type: String, required: false },
+    idQuocTich: { type: String, required: false },
 });
 
 export default model<IUser>('User', schema);

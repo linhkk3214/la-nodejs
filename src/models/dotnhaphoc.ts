@@ -2,31 +2,31 @@ import { ObjectId } from 'mongodb';
 import { Schema, model } from 'mongoose';
 import { IBaseModel } from './base-model';
 
-export interface IDM_TpHoSo extends IBaseModel {
+export interface IDotNhapHoc extends IBaseModel {
     ten: String,
     ma: String,
-    tenKhiNopOnline: String,
-    soLuongBanChinh: Number,
-    soLuongBanSao: Number,
-    soLuongBanCC: Number,
+    idHeDaoTao: String,
+    idKhoaHoc: String,
+    timeBd?: Date,
+    timeKt?: Date,
+    idCoSoDaoTao?: String,
+    idDonViLienKet?: String,
+    trangThai?: String,
     ghiChu?: String,
-    thuocDoiTuongUuTien: String,
-    thuocNghiaVuQuanSu: String,
-    idLoaiGiayTo: String,
 }
 
-const schema = new Schema<IDM_TpHoSo>({
+const schema = new Schema<IDotNhapHoc>({
     _id: ObjectId,
     ten: { type: String, required: true },
     ma: { type: String, required: true },
-    tenKhiNopOnline: { type: String, required: true },
-    soLuongBanChinh: { type: Number, required: true },
-    soLuongBanSao: { type: Number, required: true },
-    soLuongBanCC: { type: Number, required: true },
+    idHeDaoTao: { type: String, required: true },
+    idKhoaHoc: { type: Number, required: true },
+    timeBd: { type: Date, required: false },
+    timeKt: { type: Date, required: false },
+    idCoSoDaoTao: { type: String, required: false },
+    idDonViLienKet: { type: String, required: false },
+    trangThai: { type: String, required: false },
     ghiChu: { type: String, required: false },
-    thuocDoiTuongUuTien: { type: String, required: true },
-    thuocNghiaVuQuanSu: { type: String, required: true },
-    idLoaiGiayTo: { type: String, required: true },
 });
 
-export default model<IDM_TpHoSo>('DM_TpHoSo', schema);
+export default model<IDotNhapHoc>('DotNhapHoc', schema);

@@ -2,8 +2,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
+import { registerRootRoute } from './base/route-util';
 //#region import route
 import addressRoute from './routes/address';
+import danTocRoute from './routes/dantoc';
 import dmChuongTrinhDaoTaoRoute from './routes/dm-chuongtrinhdaotao';
 import dmCoSoDaoTaoRoute from './routes/dm-cosodaotao';
 import dmDoiTuongDaoTaoRoute from './routes/dm-doituongdaotao';
@@ -40,32 +42,33 @@ export default function init() {
     });
 
     //#region Register route
-    // registerRootRoute(app);
-    app.use('/', addressRoute);
-    app.use('/', dmChuongTrinhDaoTaoRoute);
-    app.use('/', dmCoSoDaoTaoRoute);
-    app.use('/', dmDoiTuongDaoTaoRoute);
-    app.use('/', dmDoiTuongTuyenSinhRoute);
-    app.use('/', dmDoiTuongUuTienRoute);
-    app.use('/', dmDonViLienKetRoute);
-    app.use('/', dmGioiTinhRoute);
-    app.use('/', dmHanhKiemRoute);
-    app.use('/', dmHeDaoTaoRoute);
-    app.use('/', dmHocKyRoute);
-    app.use('/', dmHocLucRoute);
-    app.use('/', dmHtTuyenSinhRoute);
-    app.use('/', dmKhoaHocRoute);
-    app.use('/', dmKhoaVienRoute);
-    app.use('/', dmKhuVucRoute);
-    app.use('/', dmLoaiGiayToRoute);
-    app.use('/', dmNamHocRoute);
-    app.use('/', dmNganhRoute);
-    app.use('/', dmTpHoSoRoute);
-    app.use('/', dmTrangThaiNguoiHocRoute);
-    app.use('/', dmTrinhDoDaoTaoRoute);
-    app.use('/', fileRoute);
-    app.use('/', religionRoute);
-    app.use('/', userRoute);
+    registerRootRoute(app);
+    // app.use('/', addressRoute);
+    // app.use('/', danTocRoute);
+    // app.use('/', dmChuongTrinhDaoTaoRoute);
+    // app.use('/', dmCoSoDaoTaoRoute);
+    // app.use('/', dmDoiTuongDaoTaoRoute);
+    // app.use('/', dmDoiTuongTuyenSinhRoute);
+    // app.use('/', dmDoiTuongUuTienRoute);
+    // app.use('/', dmDonViLienKetRoute);
+    // app.use('/', dmGioiTinhRoute);
+    // app.use('/', dmHanhKiemRoute);
+    // app.use('/', dmHeDaoTaoRoute);
+    // app.use('/', dmHocKyRoute);
+    // app.use('/', dmHocLucRoute);
+    // app.use('/', dmHtTuyenSinhRoute);
+    // app.use('/', dmKhoaHocRoute);
+    // app.use('/', dmKhoaVienRoute);
+    // app.use('/', dmKhuVucRoute);
+    // app.use('/', dmLoaiGiayToRoute);
+    // app.use('/', dmNamHocRoute);
+    // app.use('/', dmNganhRoute);
+    // app.use('/', dmTpHoSoRoute);
+    // app.use('/', dmTrangThaiNguoiHocRoute);
+    // app.use('/', dmTrinhDoDaoTaoRoute);
+    // app.use('/', fileRoute);
+    // app.use('/', religionRoute);
+    // app.use('/', userRoute);
     //#endregion
 
     app.listen(port, () => {

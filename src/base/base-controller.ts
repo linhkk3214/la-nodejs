@@ -52,6 +52,7 @@ export class BaseController {
 
     update = (req, res: Response) => {
         const jsonUpdate = { ...req.body };
+        this.beforeSave(jsonUpdate);
         this.ModelType.updateOne({ _id: req.params.id }, { $set: jsonUpdate })
             .then((newUser) => {
                 return res.status(200).json({
