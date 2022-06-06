@@ -1,4 +1,4 @@
-import mongodb from 'mongodb';
+import mongoose from 'mongoose';
 import { BaseController } from '../base/base-controller';
 import Address from '../models/address';
 import Temp_Address from '../models/temp-address';
@@ -30,10 +30,10 @@ export class AddressController extends BaseController {
 
         lstTinh.forEach(item => {
             const itemInsert = new Address({
-                _id: new mongodb.ObjectId(),
-                idOld: item.IdRoot,
-                ten: item.Ten,
-                level: item.Level,
+                _id: new mongoose.Types.ObjectId(),
+                idOld: item.idRoot,
+                ten: item.ten,
+                level: item.level,
                 parentId: null
             });
             lstAddressInsert.push(itemInsert);
@@ -41,13 +41,13 @@ export class AddressController extends BaseController {
         });
 
         lstHuyen.forEach(item => {
-            const itemTinhInserted = lstTinhInsert.find(q => q.idOld == item.ParentId);
+            const itemTinhInserted = lstTinhInsert.find(q => q.idOld == item.parentId);
             if (!itemTinhInserted) return false;
             const itemInsert = new Address({
-                _id: new mongodb.ObjectId(),
-                idOld: item.IdRoot,
-                ten: item.Ten,
-                level: item.Level,
+                _id: new mongoose.Types.ObjectId(),
+                idOld: item.idRoot,
+                ten: item.ten,
+                level: item.level,
                 parentId: itemTinhInserted._id
             });
             lstAddressInsert.push(itemInsert);
@@ -55,13 +55,13 @@ export class AddressController extends BaseController {
         });
 
         lstXa.forEach(item => {
-            const itemHuyenInserted = lstHuyenInsert.find(q => q.idOld == item.ParentId);
+            const itemHuyenInserted = lstHuyenInsert.find(q => q.idOld == item.parentId);
             if (!itemHuyenInserted) return false;
             const itemInsert = new Address({
-                _id: new mongodb.ObjectId(),
-                idOld: item.IdRoot,
-                ten: item.Ten,
-                level: item.Level,
+                _id: new mongoose.Types.ObjectId(),
+                idOld: item.idRoot,
+                ten: item.ten,
+                level: item.level,
                 parentId: itemHuyenInserted._id
             });
             lstAddressInsert.push(itemInsert);
