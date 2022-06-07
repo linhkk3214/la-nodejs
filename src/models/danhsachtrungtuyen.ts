@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { Schema, model, StringSchemaDefinition } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { IBaseModel } from './base-model';
 
 export interface IDanhSachTrungTuyen extends IBaseModel {
