@@ -6,7 +6,7 @@ export class DanhSachTrungTuyenController extends BaseController {
         super(DanhSachTrungTuyen);
     }
 
-    override beforeSave(model: IDanhSachTrungTuyen): void {
+    override async beforeSave(model: IDanhSachTrungTuyen) {
         model.hoVaTen = `${model.ho} ${model.ten}`;
     }
 }

@@ -6,7 +6,7 @@ export class UserController extends BaseController {
         super(User);
     }
 
-    override beforeSave(model: IUser): void {
+    override async beforeSave(model: IUser) {
         model.hoVaTen = `${model.ho} ${model.ten}`;
     }
 }
