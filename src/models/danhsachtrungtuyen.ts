@@ -66,7 +66,7 @@ const schema = new Schema<IDanhSachTrungTuyen>({
     idTinh: { type: String, required: false },
     idHuyen: { type: String, required: false },
     idXa: { type: String, required: false },
-    email: { type: String, required: true },
+    email: { type: String, required: false },
     idNganhDangKy: { type: String, required: true },
     idNganhTrungTuyen: { type: String, required: true },
     diemMon1: { type: String, required: false },
