@@ -5,17 +5,17 @@ export class BaseController {
     constructor(public ModelType: Model<any>) {
     }
 
-    insert = (req, res: Response) => {
+    insert = async (req, res: Response) => {
         const user = new this.ModelType({
             _id: new mongoose.Types.ObjectId(),
             ...req.body,
         });
 
-        this.beforeSave(user);
+        await this.beforeSave(user);
         return user
             .save()
-            .then((newUser) => {
-                this.afterSave(newUser);
+            .then(async (newUser) => {
+                await this.afterInsert(user, req.body);
                 return res.status(200).json({
                     success: true,
                     data: newUser,
@@ -50,11 +50,12 @@ export class BaseController {
             });
     };
 
-    update = (req, res: Response) => {
+    update = async (req, res: Response) => {
         const jsonUpdate = { ...req.body };
-        this.beforeSave(jsonUpdate);
+        await this.beforeSave(jsonUpdate);
         this.ModelType.updateOne({ _id: req.params.id }, { $set: jsonUpdate })
-            .then((newUser) => {
+            .then(async (newUser) => {
+                await this.afterUpdate(jsonUpdate, req.body);
                 return res.status(200).json({
                     success: true,
                     data: newUser,
@@ -164,11 +165,15 @@ export class BaseController {
             });
     };
 
-    beforeSave(model) {
+    async beforeSave(model) {
 
     }
 
-    afterSave(model) {
+    async afterInsert(model: any, req: Request) {
+
+    }
+
+    async afterUpdate(model: any, req: Request) {
 
     }
 
