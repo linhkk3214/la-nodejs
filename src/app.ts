@@ -32,7 +32,7 @@ import { registerRootRoute } from './base/route-util';
 // import userRoute from './routes/user';
 // endregion import route
 
-export default function init() {
+export default async function init() {
     const app = express();
     const port = 3000;
     app.use(cors());
@@ -42,8 +42,20 @@ export default function init() {
         res.json('Server live');
     });
 
+    const options = {
+        autoIndex: true,
+        useNewUrlParser: true, useUnifiedTopology: true,
+    };
+    await mongoose.connect(
+        'mongodb://localhost:27017/quanlynguoihoc', options,
+    ).then(() => {
+        console.log('Database connected');
+    }).catch((error) => {
+        console.log('Error connecting to database');
+    });
+
     // region Register route
-    registerRootRoute(app);
+    await registerRootRoute(app);
     // app.use('/', addressRoute);
     // app.use('/', danTocRoute);
     // app.use('/', dmChuongTrinhDaoTaoRoute);
@@ -74,16 +86,5 @@ export default function init() {
 
     app.listen(port, () => {
         return console.log(`Express is listening at http://localhost:${port}`);
-    });
-    const options = {
-        autoIndex: true,
-        useNewUrlParser: true, useUnifiedTopology: true,
-    };
-    mongoose.connect(
-        'mongodb://127.0.0.1:27017/quanlynguoihoc', options,
-    ).then(() => {
-        console.log('Database connected');
-    }).catch((error) => {
-        console.log('Error connecting to database');
     });
 }

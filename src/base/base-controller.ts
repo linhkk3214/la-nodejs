@@ -169,11 +169,10 @@ export class BaseController {
 
     }
 
-    async afterInsert(model: any, req: Request) {
-
+    async afterInsert(model: any, body: any) {
     }
 
-    async afterUpdate(model: any, req: Request) {
+    async afterUpdate(model: any, body: any) {
 
     }
 
