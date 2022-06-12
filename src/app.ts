@@ -47,7 +47,7 @@ export default async function init() {
         useNewUrlParser: true, useUnifiedTopology: true,
     };
     await mongoose.connect(
-        'mongodb://localhost:27017/quanlynguoihoc', options,
+        'mongodb://127.0.0.1:27017/quanlynguoihoc', options,
     ).then(() => {
         console.log('Database connected');
     }).catch((error) => {

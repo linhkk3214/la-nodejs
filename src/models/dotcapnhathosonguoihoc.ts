@@ -12,7 +12,7 @@ export interface IDotCapNhatHoSoNguoiHoc extends IBaseModel {
     idKhoaVien?: Array<String>;
     idNganh?: Array<String>;
     idLopHanhChinh?: Array<String>;
-    idTruongDuocSua?: Array<String>;
+    truongDuocSua?: Array<String>;
     idTpHSSH?: Array<String>;
 }
 
@@ -27,7 +27,7 @@ const schema = new Schema<IDotCapNhatHoSoNguoiHoc>({
     idKhoaVien: Array,
     idNganh: Array,
     idLopHanhChinh: Array,
-    idTruongDuocSua: Array,
+    truongDuocSua: Array,
     idTpHSSH: Array,
 });
 
