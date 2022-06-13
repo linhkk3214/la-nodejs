@@ -4,33 +4,33 @@ import { IBaseModel } from './base-model';
 
 export interface IDanhSachQuyetDinhChuyenNganh extends IBaseModel {
     idKhoaHoc: String;
-    tuNganh: String;
-    nguoiHoc: Array<String>;
-    sangNganh: String;
-    sangLop: String;
-    namHocAd: String;
-    hocKyAd: String;
+    idNganhHienTai: String;
+    lstIdNguoiHoc: Array<String>;
+    idNganhChuyen: String;
+    idLopChuyen: String;
+    idNamHocAd: String;
+    idHocKyAd: String;
     soQd?: String;
     ngayQd?: Date;
-    nguoiKy?: String;
+    idNguoiKy?: String;
     noiDung?: String;
-    dinhKem?: Array<String>;
+    lstDinhKem?: Array<String>;
 }
 
 const schema = new Schema<IDanhSachQuyetDinhChuyenNganh>({
     _id: ObjectId,
-    tuNganh: { type: String, required: true },
-    sangNganh: { type: String, required: true },
-    sangLop: { type: String, required: true },
+    idNganhHienTai: { type: String, required: true },
+    idNganhChuyen: { type: String, required: true },
+    idLopChuyen: { type: String, required: true },
     idKhoaHoc: { type: String, required: true },
-    namHocAd: { type: String, required: true },
-    hocKyAd: { type: String, required: true },
+    idNamHocAd: { type: String, required: true },
+    idHocKyAd: { type: String, required: true },
     soQd: { type: String, required: false },
-    nguoiKy: { type: String, required: false },
+    idNguoiKy: { type: String, required: false },
     ngayQd: { type: Date, required: false },
-    nguoiHoc: Array,
+    lstIdNguoiHoc: Array,
     noiDung: { type: String, required: false },
-    dinhKem: Array,
+    lstDinhKem: Array,
 });
 
 export default model<IDanhSachQuyetDinhChuyenNganh>('DanhSachQuyetDinhChuyenNganh', schema);

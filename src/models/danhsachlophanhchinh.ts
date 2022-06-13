@@ -10,7 +10,7 @@ export interface IDanhSachLopHanhChinh extends IBaseModel {
     idKhoaVien: String;
     idChuongTrinhDaoTao: String;
     idGVCN?: String;
-    idCVHT?: Array<String>;
+    idCVHTs?: Array<String>;
     siSo?: Number;
 }
 
@@ -23,7 +23,7 @@ const schema = new Schema<IDanhSachLopHanhChinh>({
     idKhoaVien: { type: String, required: true },
     idChuongTrinhDaoTao: { type: String, required: true },
     idGVCN: { type: String, required: false },
-    idCVHT: Array,
+    idCVHTs: Array,
     siSo: { type: Number, required: false },
 });
 

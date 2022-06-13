@@ -2,14 +2,14 @@ import { ObjectId } from 'mongodb';
 import { Schema, model } from 'mongoose';
 import { IBaseModel } from './base-model';
 
-export interface IUser extends IBaseModel {
+export interface IDM_CoSoDaoTao extends IBaseModel {
     ma: String;
     ten: String;
     diaChi: String;
     ghiChu?: String;
 }
 
-const schema = new Schema<IUser>({
+const schema = new Schema<IDM_CoSoDaoTao>({
     _id: ObjectId,
     ma: { type: String, required: true },
     ten: { type: String, required: true },
@@ -17,4 +17,4 @@ const schema = new Schema<IUser>({
     ghiChu: String,
 });
 
-export default model<IUser>('DM_CoSoDaoTao', schema);
+export default model<IDM_CoSoDaoTao>('DM_CoSoDaoTao', schema);
