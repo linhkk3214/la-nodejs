@@ -10,7 +10,7 @@ export class DanhSachQuyetDinhChuyenNganhController extends BaseController {
     override async afterInsert(model: IDanhSachQuyetDinhChuyenNganh) {
         // Sau khi lưu quyết định thì chuyển ngành cho người học
         // Chỉ làm với hàm afterInsert, k làm vs hàm afterUpdate vì nó k đúng 
-        await HoSoNguoiHoc.updateOne({ _id: { $in: model.lstIdNguoiHoc } }, {
+        await HoSoNguoiHoc.updateMany({ _id: { $in: model.lstIdNguoiHoc } }, {
             $set: {
                 idNganh: model.idNganhChuyen,
                 idLopHanhChinh: model.idLopChuyen

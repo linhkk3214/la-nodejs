@@ -8,15 +8,14 @@ export class DanhSachQuyetDinhHocTapController extends BaseController {
     constructor() {
         super(DanhSachQuyetDinhHocTap);
     }
+
     override async afterInsert(model: IDanhSachQuyetDinhHocTap) {
-        await DanhSachLoaiQuyetDinh.findOne({ _id: { $in: model.idLoaiQuyetDinh } }, {
-
-
-        })
-        await HoSoNguoiHoc.updateOne({ _id: { $in: model.lstIdNguoiHoc } }, {
+        const itemLoaiQuyetDinh = await DanhSachLoaiQuyetDinh.findOne({ _id: model.idLoaiQuyetDinh });
+        await HoSoNguoiHoc.updateMany({ _id: { $in: model.lstIdNguoiHoc } }, {
             $set: {
-                idTrangThai: 
+                idTrangThai: itemLoaiQuyetDinh.trangThaiNganh1
             }
         });
     }
 }
+//hì được ạ nhưng để em xem chỗ kia anh code
