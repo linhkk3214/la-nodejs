@@ -15,8 +15,8 @@ export class HoSoNguoiHocController extends BaseController {
         }
     }
 
+    // Cập nhật sĩ số lớp hành chính
     override async afterInsert(model: IHoSoNguoiHoc) {
-        // Cập nhật sĩ số lớp hành chính
         if (model.idLopHanhChinh) {
             await this.updateSiSoLopHanhChinh(model.idLopHanhChinh.toString());
         }
@@ -46,4 +46,5 @@ export class HoSoNguoiHocController extends BaseController {
             }
         });
     }
+    //Cập nhật sĩ số đang học lớp hành chính
 }

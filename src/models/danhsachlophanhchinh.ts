@@ -12,6 +12,7 @@ export interface IDanhSachLopHanhChinh extends IBaseModel {
     idGVCN?: String;
     idCVHTs?: Array<String>;
     siSo?: Number;
+    siSoDangHoc?: Number;
 }
 
 const schema = new Schema<IDanhSachLopHanhChinh>({
@@ -25,6 +26,7 @@ const schema = new Schema<IDanhSachLopHanhChinh>({
     idGVCN: { type: String, required: false },
     idCVHTs: Array,
     siSo: { type: Number, required: false },
+    siSoDangHoc: { type: Number, required: false },
 });
 
 export default model<IDanhSachLopHanhChinh>('DanhSachLopHanhChinh', schema);
