@@ -1,6 +1,6 @@
 import { BaseController } from '../base/base-controller';
 import DanhSachQuyetDinhChuyenNganh, { IDanhSachQuyetDinhChuyenNganh } from '../models/danhsachquyetdinhchuyennganh';
-import HoSoNguoiHoc, { IHoSoNguoiHoc } from '../models/hosonguoihoc';
+import HoSoNguoiHoc from '../models/hosonguoihoc';
 
 export class DanhSachQuyetDinhChuyenNganhController extends BaseController {
     constructor() {
