@@ -52,7 +52,7 @@ export class BaseController {
 
     update = async (req, res: Response) => {
         const jsonUpdate = { ...req.body };
-        await this.beforeSave(jsonUpdate);
+        await this.beforeSave(jsonUpdate, true);
         this.ModelType.updateOne({ _id: req.params.id }, { $set: jsonUpdate })
             .then(async (newUser) => {
                 await this.afterUpdate(jsonUpdate, req.body);
@@ -165,7 +165,7 @@ export class BaseController {
             });
     };
 
-    async beforeSave(model) {
+    async beforeSave(model, isEdit = false) {
 
     }
 
