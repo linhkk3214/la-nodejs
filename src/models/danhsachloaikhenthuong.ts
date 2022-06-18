@@ -13,7 +13,7 @@ const schema = new Schema<IDanhSachLoaiKhenThuong>({
     _id: ObjectId,
     ma: { type: String, required: true },
     ten: { type: String, required: true },
-    soTien: { type: String, required: false },
+    soTien: { type: Number, required: false },
     ghiChu: { type: String, required: false },
 });
 
