@@ -15,7 +15,8 @@ export class DanhSachQuyetDinhKhenThuongController extends BaseController {
             idNguoiHoc: string,
             quyetDinhKhenThuongs: {
                 idLoaiKhenThuong: string,
-                soQuyetDinhs: string[]
+                soQuyetDinhs: string[],
+                ngayQuyetDinh: String[]
             }[]
         }[] = [];
 
@@ -34,12 +35,14 @@ export class DanhSachQuyetDinhKhenThuongController extends BaseController {
                 if (!itemLoaiKhenThuong) {
                     itemLoaiKhenThuong = {
                         idLoaiKhenThuong: itemQuyetDinh.idLoaiKhenThuong.toString(),
-                        soQuyetDinhs: []
-                    }
+                        soQuyetDinhs: [],
+                        ngayQuyetDinh: [],
+                    };
                     itemKhenThuong.quyetDinhKhenThuongs.push(itemLoaiKhenThuong);
                 }
 
                 itemLoaiKhenThuong.soQuyetDinhs.push(itemQuyetDinh.soQd.toString());
+                itemLoaiKhenThuong.ngayQuyetDinh.push(itemQuyetDinh.ngayQd.toDateString());
             });
         });
         return res.status(200).json({
