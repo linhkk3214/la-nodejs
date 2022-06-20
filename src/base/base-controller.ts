@@ -10,12 +10,11 @@ export class BaseController {
             _id: new mongoose.Types.ObjectId(),
             ...req.body,
         });
-
         await this.beforeSave(user);
         return user
             .save()
             .then(async (newUser) => {
-                await this.afterInsert(user, req.body);
+                await this.afterInsert(newUser.toObject(), req.body);
                 return res.status(200).json({
                     success: true,
                     data: newUser,

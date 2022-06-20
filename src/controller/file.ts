@@ -66,6 +66,12 @@ export class FileController extends BaseController {
         return;
     };
 
+    downloadFromTemp = (req, res, next) => {
+        const filePath = this.getFullPathUpload([FolderSaveFile, 'temp', req.params.fileName]);
+        res.download(filePath);
+        return;
+    };
+
     upload = (req, res, next) => {
         res.write(JSON.stringify(req.file));
         res.end();

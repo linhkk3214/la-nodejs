@@ -5,6 +5,6 @@ const controller = new DanhSachQuyetDinhKhenThuongController();
 
 const router = addBaseRoute(tableName, controller);
 // Custom route here
-router.post(`/${tableName}/ThongKe`, controller.thongKe);
+router.post(`/${tableName}/ThongKe/:idNamHoc`, controller.thongKe);
 // End custom route
 export default router;

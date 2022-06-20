@@ -9,7 +9,7 @@ export class HoSoNguoiHocController extends BaseController {
     }
 
     override async beforeSave(model: IHoSoNguoiHoc, isEdit: boolean = false) {
-        model.hoVaTen = `${model.Ho} ${model.Ten}`;
+        model.hoVaTen = `${model.ho} ${model.ten}`;
         if (isEdit) {
             this.itemOld = await HoSoNguoiHoc.findOne({ _id: model._id });
         }
@@ -46,5 +46,4 @@ export class HoSoNguoiHocController extends BaseController {
             }
         });
     }
-    //Cập nhật sĩ số đang học lớp hành chính
 }

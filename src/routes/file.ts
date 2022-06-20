@@ -11,6 +11,7 @@ const type = upload.single('file');
 
 router.post(`/${tableName}/savefiles`, controller.saveFile);
 router.get(`/${tableName}/download/:fileName`, controller.download);
+router.get(`/${tableName}/download/temp/:fileName`, controller.downloadFromTemp);
 router.post(`/${tableName}/upload`, type, controller.upload);
 export default router;
 

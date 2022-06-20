@@ -45,8 +45,8 @@ export interface IDanhSachTrungTuyen extends IBaseModel {
     diaChiNhanGiayBao?: String,
     soQD?: String,
     ngayImport?: Date,
-    maSV: String,
-    trangThai: String
+    maSv: String,
+    trangThai: Number
 }
 
 const schema = new Schema<IDanhSachTrungTuyen>({
@@ -93,8 +93,8 @@ const schema = new Schema<IDanhSachTrungTuyen>({
     diaChiNhanGiayBao: { type: String, required: false },
     soQD: { type: String, required: false },
     ngayImport: { type: Date, required: false },
-    maSV: { type: String, required: true },
-    trangThai: { type: String, required: true }
+    maSv: { type: String, required: true },
+    trangThai: { type: Number, required: true }
 });
 
 export default model<IDanhSachTrungTuyen>('DanhSachTrungTuyen', schema);
