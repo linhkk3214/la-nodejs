@@ -15,6 +15,8 @@ export interface IDM_DonViLienKet extends IBaseModel {
 
 const schema = new Schema<IDM_DonViLienKet>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     diaChi: { type: String, required: false },

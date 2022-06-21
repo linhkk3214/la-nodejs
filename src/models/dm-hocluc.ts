@@ -9,6 +9,8 @@ export interface IDM_HocLuc extends IBaseModel {
 
 const schema = new Schema<IDM_HocLuc>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
 });

@@ -15,6 +15,8 @@ export interface IDM_HocKy extends IBaseModel {
 
 const schema = new Schema<IDM_HocKy>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idHeDaoTao: { type: String, required: true },
     idNamHoc: { type: String, required: true },
     ten: { type: String, required: true },

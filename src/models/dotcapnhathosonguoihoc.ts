@@ -18,6 +18,8 @@ export interface IDotCapNhatHoSoNguoiHoc extends IBaseModel {
 
 const schema = new Schema<IDotCapNhatHoSoNguoiHoc>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     timeTu: { type: Date, required: true },
     timeDen: { type: Date, required: true },

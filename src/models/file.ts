@@ -10,6 +10,8 @@ export interface IFile extends IBaseModel {
 
 const schema = new Schema<IFile>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     url: { type: String, required: true },
     extension: { type: String, required: true },

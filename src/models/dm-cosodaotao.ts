@@ -11,6 +11,8 @@ export interface IDM_CoSoDaoTao extends IBaseModel {
 
 const schema = new Schema<IDM_CoSoDaoTao>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ma: { type: String, required: true },
     ten: { type: String, required: true },
     diaChi: { type: String, required: true },

@@ -14,6 +14,8 @@ export interface IDotNhapHoc_TpHoSo extends IBaseModel {
 
 const schema = new Schema<IDotNhapHoc_TpHoSo>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idDotNhapHoc: { type: String, required: true },
     idTpHoSo: { type: String, required: true },
     soLuongBanChinh: { type: Number, required: true },

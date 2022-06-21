@@ -10,6 +10,8 @@ export interface IHoSoCanBo extends IBaseModel {
 
 const schema = new Schema<IHoSoCanBo>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     idKhoaVien: { type: String, required: true }

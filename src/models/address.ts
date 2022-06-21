@@ -11,6 +11,8 @@ export interface IAddress extends IBaseModel {
 
 const schema = new Schema<IAddress>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idOld: { type: String, required: true },
     level: { type: Number, required: true },
     parentId: { type: String, required: false },

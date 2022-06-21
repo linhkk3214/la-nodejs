@@ -22,6 +22,8 @@ export interface IUser extends IBaseModel {
 
 const schema = new Schema<IUser>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ho: { type: String, required: true },
     hoVaTen: { type: String, required: true },

@@ -11,6 +11,8 @@ export interface IDM_DoiTuongDaoTao extends IBaseModel {
 
 const schema = new Schema<IDM_DoiTuongDaoTao>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     idHeDaoTao: { type: String, required: true },

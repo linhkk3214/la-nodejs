@@ -9,6 +9,8 @@ export interface IDM_DoiTuongUuTien extends IBaseModel {
 
 const schema = new Schema<IDM_DoiTuongUuTien>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
 });

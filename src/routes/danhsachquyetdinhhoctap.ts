@@ -5,6 +5,6 @@ const controller = new DanhSachQuyetDinhHocTapController();
 
 const router = addBaseRoute(tableName, controller);
 // Custom route here
-// router.get(`/${tableName}`, controller.xxx);
-// End custom route
+router.post(`/${tableName}/ThongKe/:idNamHoc`, controller.thongKe);
+
 export default router;

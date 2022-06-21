@@ -9,6 +9,8 @@ export interface IDM_KhoaVien extends IBaseModel {
 
 const schema = new Schema<IDM_KhoaVien>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
 });

@@ -16,6 +16,8 @@ export interface IDanhSachQuyetDinhHocBong extends IBaseModel {
 
 const schema = new Schema<IDanhSachQuyetDinhHocBong>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idHocBong: { type: String, required: true },
     idNamHoc: { type: String, required: true },
     idHocKy: { type: String, required: true },

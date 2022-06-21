@@ -9,6 +9,8 @@ export interface IDM_HanhKiem extends IBaseModel {
 
 const schema = new Schema<IDM_HanhKiem>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
 });

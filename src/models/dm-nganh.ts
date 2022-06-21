@@ -12,6 +12,8 @@ export interface IDM_Nganh extends IBaseModel {
 
 const schema = new Schema<IDM_Nganh>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     idTrinhDoDaoTao: { type: String, required: true },

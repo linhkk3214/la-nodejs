@@ -51,6 +51,8 @@ export interface IDanhSachTrungTuyen extends IBaseModel {
 
 const schema = new Schema<IDanhSachTrungTuyen>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idDotNhapHoc: { type: String, required: true },
     maNhapHoc: { type: String, required: true },
     maHoSo: { type: String, required: false },

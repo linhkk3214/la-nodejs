@@ -36,7 +36,7 @@ export interface IHoSoNguoiHoc extends IBaseModel {
     idTrangThai: String,
     idLopHienTai: String,
     idKhoaVien: String,
-    moiQuanHe: String,
+    moiQuanHe: Number,
     tenNhanThan: String,
     ngaySinhNhanThan: String,
     ngheNghiepNhanThan: String,
@@ -49,6 +49,8 @@ export interface IHoSoNguoiHoc extends IBaseModel {
 
 const schema = new Schema<IHoSoNguoiHoc>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     maSv: { type: String, required: true },
     ho: { type: String, required: true },
     ten: { type: String, required: true },
@@ -86,7 +88,7 @@ const schema = new Schema<IHoSoNguoiHoc>({
     ngheNghiepNhanThan: { type: String, required: false },
     ngaySinhNhanThan: { type: String, required: false },
     tenNhanThan: { type: String, required: false },
-    moiQuanHe: { type: String, required: false },
+    moiQuanHe: { type: Number, required: false },
     noiONhanThan: { type: String, required: false },
     ngaySinh: { type: Date, required: true },
     idDoiTuongDaoTao: { type: String, required: false },

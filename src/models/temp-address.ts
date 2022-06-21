@@ -12,6 +12,8 @@ export interface ITemp_Address extends IBaseModel {
 
 const schema = new Schema<ITemp_Address>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     level: { type: Number, required: true },
     idRoot: { type: String, required: true },
     parentId: { type: String, required: false },

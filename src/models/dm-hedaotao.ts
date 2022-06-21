@@ -10,6 +10,8 @@ export interface IDM_HeDaoTao extends IBaseModel {
 
 const schema = new Schema<IDM_HeDaoTao>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     tenTiengAnh: { type: String, required: false },

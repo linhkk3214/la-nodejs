@@ -10,6 +10,8 @@ export interface IQuocTich extends IBaseModel {
 
 const schema = new Schema<IQuocTich>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     soThuTu: { type: Number, required: true },
 });

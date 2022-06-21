@@ -10,6 +10,8 @@ export interface IDanToc extends IBaseModel {
 
 const schema = new Schema<IDanToc>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     soThuTu: { type: Number, required: true },
     moTa: { type: String, required: false },

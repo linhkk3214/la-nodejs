@@ -50,12 +50,13 @@ export class DanhSachTrungTuyenController extends BaseController {
         });
 
         // Lấy ra 1 lớp hành chính bất kỳ thuộc [chương trình đào tạo của ngành trúng tuyển] của sinh viên 
-        const itemLopHanhChinh = await DanhSachLopHanhChinh.findOne({
+        const itemLopHanhChinhs = (await DanhSachLopHanhChinh.find({
             idChuongTrinhDaoTao: {
                 $in: lstCtdt.map(q => q._id)
             }
-        });
-        if (!itemLopHanhChinh) return;
+        }).sort({ created: 1 }).limit(1));
+        if (!itemLopHanhChinhs.length) return;
+        const itemLopHanhChinh = itemLopHanhChinhs[0];
         const itemNguoiHoc = new HoSoNguoiHoc({
             ...model,
             maSv: model.maSv,

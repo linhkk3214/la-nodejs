@@ -10,6 +10,8 @@ export interface IDM_TrinhDoDaoTao extends IBaseModel {
 
 const schema = new Schema<IDM_TrinhDoDaoTao>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     capDo: { type: Number, required: true },

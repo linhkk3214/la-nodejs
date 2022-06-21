@@ -19,6 +19,8 @@ export interface IDanhSachQuyetDinhChuyenNganh extends IBaseModel {
 
 const schema = new Schema<IDanhSachQuyetDinhChuyenNganh>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idNganhHienTai: { type: String, required: true },
     idNganhChuyen: { type: String, required: true },
     idLopChuyen: { type: String, required: true },

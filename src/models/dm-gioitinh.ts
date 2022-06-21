@@ -10,6 +10,8 @@ export interface IDM_GioiTinh extends IBaseModel {
 
 const schema = new Schema<IDM_GioiTinh>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     ma: { type: String, required: true },
     moTa: { type: String, required: false },

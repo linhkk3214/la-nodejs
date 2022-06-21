@@ -8,6 +8,7 @@ export class BaseController {
     insert = async (req, res: Response) => {
         const user = new this.ModelType({
             _id: new mongoose.Types.ObjectId(),
+            created: new Date(),
             ...req.body,
         });
         await this.beforeSave(user);
@@ -52,6 +53,7 @@ export class BaseController {
     update = async (req, res: Response) => {
         const jsonUpdate = { ...req.body };
         await this.beforeSave(jsonUpdate, true);
+        jsonUpdate.modified = new Date();
         this.ModelType.updateOne({ _id: req.params.id }, { $set: jsonUpdate })
             .then(async (newUser) => {
                 await this.afterUpdate(jsonUpdate, req.body);

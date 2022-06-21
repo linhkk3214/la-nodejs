@@ -12,6 +12,8 @@ export interface IDM_NamHoc extends IBaseModel {
 
 const schema = new Schema<IDM_NamHoc>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ten: { type: String, required: true },
     nam: { type: Number, required: true },
     tuNgay: { type: Date, required: true },

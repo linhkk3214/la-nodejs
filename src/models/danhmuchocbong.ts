@@ -14,6 +14,8 @@ export interface IDanhMucHocBong extends IBaseModel {
 
 const schema = new Schema<IDanhMucHocBong>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ma: { type: String, required: true },
     ten: { type: String, required: true },
     idDonViTaiTro: { type: String, required: true },

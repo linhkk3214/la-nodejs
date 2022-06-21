@@ -18,6 +18,8 @@ export interface IDanhSachQuyetDinhHocTap extends IBaseModel {
 
 const schema = new Schema<IDanhSachQuyetDinhHocTap>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     idLoaiQuyetDinh: { type: String, required: true },
     idNamHoc: { type: String, required: true },
     idHocKy: { type: String, required: true },

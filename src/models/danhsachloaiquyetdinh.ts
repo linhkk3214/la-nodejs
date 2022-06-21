@@ -11,6 +11,8 @@ export interface IDanhSachLoaiQuyetDinh extends IBaseModel {
 
 const schema = new Schema<IDanhSachLoaiQuyetDinh>({
     _id: ObjectId,
+    created: { type: Date, required: false },
+    modified: { type: Date, required: false },
     ma: { type: String, required: true },
     ten: { type: String, required: true },
     trangThaiNganh1: { type: String, required: true },
