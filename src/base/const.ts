@@ -26,3 +26,5 @@ export const ColorReference = {
     BgCyan: '\x1b[46m',
     BgWhite: '\x1b[47m',
 };
+
+export const DefaultIdTrangThaiNguoiHoc = '6299939fe9efbdcb6417b423';

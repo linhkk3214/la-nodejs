@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import { registerRootRoute } from './base/route-util';
+import MainJob from './schedule/main';
 // #region import route
 // import addressRoute from './routes/address';
 // import danTocRoute from './routes/dantoc';
@@ -87,4 +88,7 @@ export default async function init() {
     app.listen(port, () => {
         return console.log(`Express is listening at http://localhost:${port}`);
     });
+
+    const job = new MainJob();
+    job.run();
 }

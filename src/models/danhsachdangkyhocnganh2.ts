@@ -6,7 +6,8 @@ export interface IDanhSachDangKyHocNganh2 extends IBaseModel {
     idNguoiHoc: String;
     idDotDangKy: String;
     idNganhDangKy: String,
-    trangThai: String,
+    trangThai: Number,
+    synced: Boolean,
 }
 
 const schema = new Schema<IDanhSachDangKyHocNganh2>({
@@ -16,7 +17,8 @@ const schema = new Schema<IDanhSachDangKyHocNganh2>({
     idNguoiHoc: { type: String, required: true },
     idDotDangKy: { type: String, required: true },
     idNganhDangKy: { type: String, required: true },
-    trangThai: { type: String, required: false },
+    trangThai: { type: Number, required: false },
+    synced: { type: Boolean, required: false }
 });
 
 export default model<IDanhSachDangKyHocNganh2>('DanhSachDangKyHocNganh2', schema);

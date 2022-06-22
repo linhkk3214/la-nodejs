@@ -5,6 +5,7 @@ import HoSoNguoiHoc from '../models/hosonguoihoc';
 import DanhSachLopHanhChinh from '../models/danhsachlophanhchinh';
 import DM_ChuongTrinhDaoTao from '../models/dm-chuongtrinhdaotao';
 import DotNhapHoc from '../models/dotnhaphoc';
+import { DefaultIdTrangThaiNguoiHoc } from '../base/const';
 
 export class DanhSachTrungTuyenController extends BaseController {
     modelOld: IDanhSachTrungTuyen;
@@ -65,7 +66,7 @@ export class DanhSachTrungTuyenController extends BaseController {
             idKhoa: itemLopHanhChinh.idKhoaVien,
             idKhoaHoc: itemLopHanhChinh.idKhoaHoc,
             idNganh: itemLopHanhChinh.idChuongTrinhDaoTao,
-            idTrangThai: '6299939fe9efbdcb6417b423',
+            idTrangThai: DefaultIdTrangThaiNguoiHoc,
             ngaySinh: model.ngaySinh
         });
 

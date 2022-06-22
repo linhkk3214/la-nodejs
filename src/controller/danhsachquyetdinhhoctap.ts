@@ -13,7 +13,8 @@ export class DanhSachQuyetDinhHocTapController extends BaseController {
         const itemLoaiQuyetDinh = await DanhSachLoaiQuyetDinh.findOne({ _id: model.idLoaiQuyetDinh });
         await HoSoNguoiHoc.updateMany({ _id: { $in: model.lstIdNguoiHoc } }, {
             $set: {
-                idTrangThai: itemLoaiQuyetDinh.trangThaiNganh1
+                idTrangThai: itemLoaiQuyetDinh.trangThaiNganh1,
+                idTrangThaiNganh2: itemLoaiQuyetDinh.trangThaiNganh2
             }
         });
     }
