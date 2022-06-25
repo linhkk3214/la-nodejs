@@ -45,9 +45,6 @@ export class DotNhapHocController extends BaseController {
                 await DotNhapHoc_TpHoSo.updateOne({ _id: itemUpdate._id }, { $set: { ...itemUpdate } });
             }
         }
-        // Các bản ghi cần xóa thì sẽ là danh sách các bản ghi đã có trong csdl (cái này là các bản ghi thành phần hồ sơ của đợt này)
-        // Nhưng _id của nó k tồn tại trong danh sách được gửi lên từ client thế chỗ này là sao á
-        // Sau khi xác định được các bản ghi cần xóa thì xóa thui
         const lstIdDelete = lstDanhSachOld.filter(q => !lstDanhSach.some(x => x._id == q._id)).map(q => q._id);
         if (lstIdDelete.length) {
             await DotNhapHoc_TpHoSo.deleteMany({ _id: { $in: lstIdDelete } });
