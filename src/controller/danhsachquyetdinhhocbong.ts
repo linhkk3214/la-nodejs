@@ -1,10 +1,30 @@
 import { BaseController } from '../base/base-controller';
 import DanhSachQuyetDinhHocBong, { IDanhSachQuyetDinhHocBong } from '../models/danhsachquyetdinhhocbong';
 import { Request, Response } from 'express';
+import { EnumTrangThaiQuyetDinh } from '../base/enums';
 
 export class DanhSachQuyetDinhHocBongController extends BaseController {
     constructor() {
         super(DanhSachQuyetDinhHocBong);
+    }
+
+    override async beforeSave(model: IDanhSachQuyetDinhHocBong, isEdit: boolean = false) {
+        model.idTrangThai = EnumTrangThaiQuyetDinh.MOI_TAO;
+    }
+
+    thayDoiTrangThai = async (req: Request, res: Response) => {
+        const idTrangThai = Number(req.params.idTrangThai);
+        if (!idTrangThai || idTrangThai == NaN) {
+            res.status(200).json(<any>{
+                success: false,
+                message: 'Bạn chưa truyền trạng thái'
+            });
+            return;
+        }
+        await DanhSachQuyetDinhHocBong.updateOne({ _id: req.params.id }, { $set: { idTrangThai: req.params.idTrangThai } });
+        res.status(200).json(<any>{
+            success: true
+        });
     }
 
     thongKe = async (req: Request, res: Response) => {

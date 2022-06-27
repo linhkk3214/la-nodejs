@@ -3,10 +3,30 @@ import DanhSachQuyetDinhHocTap, { IDanhSachQuyetDinhHocTap } from '../models/dan
 import DanhSachLoaiQuyetDinh from '../models/danhsachloaiquyetdinh';
 import HoSoNguoiHoc, { IHoSoNguoiHoc } from '../models/hosonguoihoc';
 import { Request, Response } from 'express';
+import { EnumTrangThaiQuyetDinh } from '../base/enums';
 
 export class DanhSachQuyetDinhHocTapController extends BaseController {
     constructor() {
         super(DanhSachQuyetDinhHocTap);
+    }
+
+    override async beforeSave(model: IDanhSachQuyetDinhHocTap, isEdit: boolean = false) {
+        model.idTrangThai = EnumTrangThaiQuyetDinh.MOI_TAO;
+    }
+
+    thayDoiTrangThai = async (req: Request, res: Response) => {
+        const idTrangThai = Number(req.params.idTrangThai);
+        if (!idTrangThai || idTrangThai == NaN) {
+            res.status(200).json(<any>{
+                success: false,
+                message: 'Bạn chưa truyền trạng thái'
+            });
+            return;
+        }
+        await DanhSachQuyetDinhHocTap.updateOne({ _id: req.params.id }, { $set: { idTrangThai: req.params.idTrangThai } });
+        res.status(200).json(<any>{
+            success: true
+        });
     }
 
     override async afterInsert(model: IDanhSachQuyetDinhHocTap) {
