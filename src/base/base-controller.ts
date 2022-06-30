@@ -233,10 +233,7 @@ export class BaseController {
             }
             else if (item.operator == 'contains') {
                 filters.push({
-                    [item.field]: {
-                        '$regex': `${JSON.parse(item.value)}`,
-                        '$options': 'i'
-                    }
+                    [item.field]: this.getValueFilterContain(item.value)
                 });
             }
             else if (item.operator == 'gt' || item.operator == 'gte'
@@ -252,6 +249,13 @@ export class BaseController {
                     [item.field]: `${JSON.parse(item.value)}`
                 });
             }
+        }
+    }
+
+    getValueFilterContain(value: string) {
+        return {
+            '$regex': `${JSON.parse(value)}`,
+            '$options': 'i'
         }
     }
     // #endregion

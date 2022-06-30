@@ -12,6 +12,8 @@ export interface IDanhSachQuyetDinhKhenThuong extends IBaseModel {
     idNguoiKy?: String;
     noiDung?: String;
     lstDinhKem?: Array<String>;
+    idTrangThai: Number
+
 }
 
 const schema = new Schema<IDanhSachQuyetDinhKhenThuong>({
@@ -26,6 +28,7 @@ const schema = new Schema<IDanhSachQuyetDinhKhenThuong>({
     ngayQd: { type: Date, required: false },
     lstIdNguoiHoc: Array,
     noiDung: { type: String, required: false },
+    idTrangThai: { type: Number, required: false },
     lstDinhKem: Array,
 });
 
