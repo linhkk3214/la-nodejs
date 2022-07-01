@@ -21,17 +21,17 @@ export class DanhSachTrungTuyenController extends BaseController {
     }
 
     override async afterInsert(model: IDanhSachTrungTuyen, body: any): Promise<void> {
-        if (model.trangThai == EnumTrangThaiHS.TT1) {
+        if (model.trangThai == EnumTrangThaiHS.NOP_DU) {
             await this.taoHoSoNguoiHoc(model);
         }
     }
 
     override async afterUpdate(model: IDanhSachTrungTuyen, body: any): Promise<void> {
         // Sau khi cập nhật thì nếu chuyển từ trạng thái chưa nộp đủ => nộp đủ thì tạo người học
-        if (this.modelOld.trangThai == EnumTrangThaiHS.TT3
-            || this.modelOld.trangThai == EnumTrangThaiHS.TT2
+        if (this.modelOld.trangThai == EnumTrangThaiHS.CHUA_NOP
+            || this.modelOld.trangThai == EnumTrangThaiHS.NOP_THIEU
         ) {
-            if (model.trangThai == EnumTrangThaiHS.TT1) {
+            if (model.trangThai == EnumTrangThaiHS.NOP_DU) {
                 await this.taoHoSoNguoiHoc(model);
             }
         }

@@ -23,20 +23,46 @@ export class DanhSachQuyetDinhHocTapController extends BaseController {
             });
             return;
         }
-        await DanhSachQuyetDinhHocTap.updateOne({ _id: req.params.id }, { $set: { idTrangThai: req.params.idTrangThai } });
+        await DanhSachQuyetDinhHocTap.updateOne({ _id: req.params.id }, { $set: { idTrangThai: idTrangThai } });
+        // Nếu cập nhật trạng thái là đã duyệt thì update trạng thái người học
+        if (idTrangThai == EnumTrangThaiQuyetDinh.DA_DUYET) {
+            const itemQuyetDinh = await DanhSachQuyetDinhHocTap.findOne({ _id: req.params.id });
+            await this.updateTrangThaiNguoiHoc(itemQuyetDinh);
+        }
         res.status(200).json(<any>{
             success: true
         });
     }
 
-    override async afterInsert(model: IDanhSachQuyetDinhHocTap) {
+    async updateTrangThaiNguoiHoc(model: IDanhSachQuyetDinhHocTap) {
         const itemLoaiQuyetDinh = await DanhSachLoaiQuyetDinh.findOne({ _id: model.idLoaiQuyetDinh });
-        await HoSoNguoiHoc.updateMany({ _id: { $in: model.lstIdNguoiHoc } }, {
-            $set: {
-                idTrangThai: itemLoaiQuyetDinh.trangThaiNganh1,
-                idTrangThaiNganh2: itemLoaiQuyetDinh.trangThaiNganh2
+        // Lấy ra các sinh viên có ngành 2
+        const lstSinhVienCoNganh2 = await HoSoNguoiHoc.find({
+            _id: { $in: model.lstIdNguoiHoc },
+            idNganh2: { $ne: null }
+        }, { _id: 1 });
+        const lstIdSinhVienCoNganh2 = lstSinhVienCoNganh2.map(q => q._id);
+        const lstIdSinhVienChiCoNganh1 = [];
+        model.lstIdNguoiHoc.forEach(idNguoiHoc => {
+            if (!lstIdSinhVienCoNganh2.some(x => x.toString() == idNguoiHoc)) {
+                lstIdSinhVienChiCoNganh1.push(idNguoiHoc);
             }
         });
+        if (lstIdSinhVienChiCoNganh1.length) {
+            await HoSoNguoiHoc.updateMany({ _id: { $in: lstIdSinhVienChiCoNganh1 } }, {
+                $set: {
+                    idTrangThai: itemLoaiQuyetDinh.trangThaiNganh1
+                }
+            });
+        }
+
+        if (lstIdSinhVienCoNganh2.length) {
+            await HoSoNguoiHoc.updateMany({ _id: { $in: lstIdSinhVienCoNganh2 } }, {
+                $set: {
+                    idTrangThaiNganh2: itemLoaiQuyetDinh.trangThaiNganh2
+                }
+            });
+        }
     }
 
     thongKe = async (req: Request, res: Response) => {
