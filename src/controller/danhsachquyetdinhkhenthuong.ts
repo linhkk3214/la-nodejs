@@ -54,6 +54,10 @@ export class DanhSachQuyetDinhKhenThuongController extends BaseController {
         });
     }
 
+    override async beforeSave(model: IDanhSachQuyetDinhKhenThuong, isEdit: boolean = false) {
+        model.idTrangThai = EnumTrangThaiQuyetDinh.MOI_TAO;
+    }
+
     thayDoiTrangThai = async (req: Request, res: Response) => {
         const idTrangThai = Number(req.params.idTrangThai);
         if (!idTrangThai || idTrangThai == NaN) {
