@@ -6,6 +6,8 @@ import DanhSachLopHanhChinh from '../models/danhsachlophanhchinh';
 import DM_ChuongTrinhDaoTao from '../models/dm-chuongtrinhdaotao';
 import DotNhapHoc from '../models/dotnhaphoc';
 import { DefaultIdTrangThaiNguoiHoc } from '../base/const';
+import { BaoCaoNhapHoc } from '../models/baocao';
+import { Request, Response } from 'express';
 
 export class DanhSachTrungTuyenController extends BaseController {
     modelOld: IDanhSachTrungTuyen;
@@ -72,4 +74,57 @@ export class DanhSachTrungTuyenController extends BaseController {
 
         await itemNguoiHoc.save();
     }
+
+    thongKe = async (req, res: Response) => {
+        const [query, filters] = this.createQueryWithFilterFromBody(DM_ChuongTrinhDaoTao, req.body);
+        // Lấy ra danh sách chương trình đào tạo có phân trang
+        await Promise.all([
+            this.ModelType.count(filters),
+            query
+        ]).then(async ([totalRecord, lstCtdt]) => {
+            const result: BaoCaoNhapHoc[] = [];
+            const lstIdCtdt = lstCtdt.map(q => q._id.toString());
+            const lstSinhVienTrungTuyen = await DanhSachTrungTuyen.find({
+                idNganhTrungTuyen: { $in: lstIdCtdt }
+            });
+            lstCtdt.forEach(itemCtdt => {
+                const itemResult = new BaoCaoNhapHoc({
+                    soCTDT: itemCtdt.soCTDT,
+                    ten: itemCtdt.ten,
+                    soSinhVienChuaNop: 0,
+                    soSinhVienDaRut: 0,
+                    soSinhVienNopDu: 0,
+                    soSinhVienNopThieu: 0
+                });
+                // Lấy ra danh sách sinh viên trúng tuyển thuộc ngành
+                lstSinhVienTrungTuyen.filter(q => q.idNganhTrungTuyen == itemCtdt._id.toString())
+                    .forEach(itemSinhVien => {
+                        if (itemSinhVien.trangThai == EnumTrangThaiHS.CHUA_NOP) {
+                            itemResult.soSinhVienChuaNop++;
+                        }
+                        else if (itemSinhVien.trangThai == EnumTrangThaiHS.DA_RUT) {
+                            itemResult.soSinhVienDaRut++;
+                        }
+                        else if (itemSinhVien.trangThai == EnumTrangThaiHS.NOP_DU) {
+                            itemResult.soSinhVienNopDu++;
+                        }
+                        else if (itemSinhVien.trangThai == EnumTrangThaiHS.NOP_THIEU) {
+                            itemResult.soSinhVienNopThieu++;
+                        }
+                    });
+                result.push(itemResult);
+            });
+            return res.status(200).json({
+                success: true,
+                data: result,
+                totalRecord: totalRecord,
+            });
+        }).catch((err) => {
+            res.status(500).json({
+                success: false,
+                message: 'Có lỗi',
+                error: err.message,
+            });
+        });
+    };
 }
