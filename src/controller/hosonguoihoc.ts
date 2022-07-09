@@ -3,6 +3,11 @@ import HoSoNguoiHoc, { IHoSoNguoiHoc } from '../models/hosonguoihoc';
 import DanhSachLopHanhChinh from '../models/danhsachlophanhchinh';
 import HoSoNguoiHoc_NhanThan from '../models/hosonguoihoc-nhanthan';
 import mongoose from 'mongoose';
+import { Request, Response } from 'express';
+import { BaoCaoNguoiHocTheoKhoa, BaoCaoNguoiHocTheoNganh } from '../models/baocao';
+import DM_TrangThaiNguoiHoc from '../models/dm-trangthainguoihoc';
+import DM_KhoaHoc from '../models/dm-khoahoc';
+import DM_ChuongTrinhDaoTao from '../models/dm-chuongtrinhdaotao';
 
 export class HoSoNguoiHocController extends BaseController {
     itemOld: IHoSoNguoiHoc;
@@ -89,4 +94,85 @@ export class HoSoNguoiHocController extends BaseController {
             }
         });
     }
+
+    thongKeNguoiHocTheoNganh = async (req, res: Response) => {
+        const [query, filters] = this.createQueryWithFilterFromBody(DM_ChuongTrinhDaoTao, req.body);
+        // Lấy ra danh sách chương trình đào tạo có phân trang
+        await Promise.all([
+            this.ModelType.count(filters),
+            query
+        ]).then(async ([totalRecord, lstKhoaHoc]) => {
+            const result: BaoCaoNguoiHocTheoNganh[] = [];
+            const lstIdKhoaHoc = lstKhoaHoc.map(q => q._id.toString());
+            const lstNguoiHoc = await HoSoNguoiHoc.find({
+                idNganh: { $in: lstIdKhoaHoc }
+            });
+            // Lấy ra danh mục trạng thái người học
+            const lstTrangThai = await DM_TrangThaiNguoiHoc.find({});
+            lstKhoaHoc.forEach(itemKhoaHoc => {
+                const itemResult = new BaoCaoNguoiHocTheoNganh({
+                    soCTDT: itemKhoaHoc.soCTDT,
+                    ten: itemKhoaHoc.ten
+                });
+                lstTrangThai.forEach(itemTrangThai => {
+                    // Lấy ra danh sách sinh viên thuộc ngành và có trạng thái là [itemTrangThai._id]
+                    const soSinhVienThoaMan = lstNguoiHoc.filter(q => q.idNganh == itemKhoaHoc._id.toString()
+                        && q.idTrangThai == itemTrangThai._id.toString()).length;
+                    itemResult[itemTrangThai._id.toString()] = soSinhVienThoaMan;
+                });
+                result.push(itemResult);
+            });
+            return res.status(200).json({
+                success: true,
+                data: result,
+                totalRecord: totalRecord,
+            });
+        }).catch((err) => {
+            res.status(500).json({
+                success: false,
+                message: 'Có lỗi',
+                error: err.message,
+            });
+        });
+    };
+
+    thongKeNguoiHocTheoKhoa = async (req, res: Response) => {
+        const [query, filters] = this.createQueryWithFilterFromBody(DM_KhoaHoc, req.body);
+        // Lấy ra danh sách chương trình đào tạo có phân trang
+        await Promise.all([
+            this.ModelType.count(filters),
+            query
+        ]).then(async ([totalRecord, lstKhoaHoc]) => {
+            const result: BaoCaoNguoiHocTheoKhoa[] = [];
+            const lstIdKhoaHoc = lstKhoaHoc.map(q => q._id.toString());
+            const lstNguoiHoc = await HoSoNguoiHoc.find({
+                idKhoaHoc: { $in: lstIdKhoaHoc }
+            });
+            // Lấy ra danh mục trạng thái người học
+            const lstTrangThai = await DM_TrangThaiNguoiHoc.find({});
+            lstKhoaHoc.forEach(itemKhoaHoc => {
+                const itemResult = new BaoCaoNguoiHocTheoKhoa({
+                    ten: itemKhoaHoc.ten
+                });
+                lstTrangThai.forEach(itemTrangThai => {
+                    // Lấy ra danh sách sinh viên thuộc ngành và có trạng thái là [itemTrangThai._id]
+                    const soSinhVienThoaMan = lstNguoiHoc.filter(q => q.idKhoaHoc == itemKhoaHoc._id.toString()
+                        && q.idTrangThai == itemTrangThai._id.toString()).length;
+                    itemResult[itemTrangThai._id.toString()] = soSinhVienThoaMan;
+                });
+                result.push(itemResult);
+            });
+            return res.status(200).json({
+                success: true,
+                data: result,
+                totalRecord: totalRecord,
+            });
+        }).catch((err) => {
+            res.status(500).json({
+                success: false,
+                message: 'Có lỗi',
+                error: err.message,
+            });
+        });
+    };
 }

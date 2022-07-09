@@ -65,7 +65,7 @@ export class DanhSachTrungTuyenController extends BaseController {
             maSv: model.maSv,
             idLopHanhChinh: itemLopHanhChinh._id,
             idHe: itemLopHanhChinh.idHeDaoTao,
-            idKhoa: itemLopHanhChinh.idKhoaVien,
+            idKhoaVien: itemLopHanhChinh.idKhoaVien,
             idKhoaHoc: itemLopHanhChinh.idKhoaHoc,
             idNganh: itemLopHanhChinh.idChuongTrinhDaoTao,
             idTrangThai: DefaultIdTrangThaiNguoiHoc,
