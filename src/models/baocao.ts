@@ -1,10 +1,11 @@
 export class BaoCaoNhapHoc {
+    id: string;
     soCTDT: string;
     ten: string;
-    soSinhVienNopDu: number;
-    soSinhVienNopThieu: number;
-    soSinhVienChuaNop: number;
-    soSinhVienDaRut: number;
+    lstIdSinhVienNopDu: string[];
+    lstIdSinhVienNopThieu: string[];
+    lstIdSinhVienChuaNop: string[];
+    lstIdSinhVienDaRut: string[];
     constructor(init?: BaoCaoNhapHoc) {
         for (const key in init) {
             this[key] = init[key];
@@ -13,6 +14,7 @@ export class BaoCaoNhapHoc {
 }
 
 export class BaoCaoNguoiHocTheoNganh {
+    id: string;
     soCTDT: string;
     ten: string;
     // Một số cột dynamic k khai báo được sẽ add sau trong code thống kê

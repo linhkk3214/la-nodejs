@@ -101,24 +101,24 @@ export class HoSoNguoiHocController extends BaseController {
         await Promise.all([
             this.ModelType.count(filters),
             query
-        ]).then(async ([totalRecord, lstKhoaHoc]) => {
+        ]).then(async ([totalRecord, lstNganh]) => {
             const result: BaoCaoNguoiHocTheoNganh[] = [];
-            const lstIdKhoaHoc = lstKhoaHoc.map(q => q._id.toString());
+            const lstIdNganh = lstNganh.map(q => q._id.toString());
             const lstNguoiHoc = await HoSoNguoiHoc.find({
-                idNganh: { $in: lstIdKhoaHoc }
+                idNganh: { $in: lstIdNganh }
             });
             // Lấy ra danh mục trạng thái người học
             const lstTrangThai = await DM_TrangThaiNguoiHoc.find({});
-            lstKhoaHoc.forEach(itemKhoaHoc => {
+            lstNganh.forEach(itemNganh => {
                 const itemResult = new BaoCaoNguoiHocTheoNganh({
-                    soCTDT: itemKhoaHoc.soCTDT,
-                    ten: itemKhoaHoc.ten
+                    id: itemNganh._id.toString(),
+                    soCTDT: itemNganh.soCTDT,
+                    ten: itemNganh.ten
                 });
                 lstTrangThai.forEach(itemTrangThai => {
-                    // Lấy ra danh sách sinh viên thuộc ngành và có trạng thái là [itemTrangThai._id]
-                    const soSinhVienThoaMan = lstNguoiHoc.filter(q => q.idNganh == itemKhoaHoc._id.toString()
-                        && q.idTrangThai == itemTrangThai._id.toString()).length;
-                    itemResult[itemTrangThai._id.toString()] = soSinhVienThoaMan;
+                    const lstSinhVienThoaMan = lstNguoiHoc.filter(q => q.idNganh == itemNganh._id.toString()
+                        && q.idTrangThai == itemTrangThai._id.toString());
+                    itemResult[itemTrangThai._id.toString()] = lstSinhVienThoaMan.map(q => q._id.toString());
                 });
                 result.push(itemResult);
             });

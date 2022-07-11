@@ -89,27 +89,28 @@ export class DanhSachTrungTuyenController extends BaseController {
             });
             lstCtdt.forEach(itemCtdt => {
                 const itemResult = new BaoCaoNhapHoc({
+                    id: itemCtdt._id.toString(),
                     soCTDT: itemCtdt.soCTDT,
                     ten: itemCtdt.ten,
-                    soSinhVienChuaNop: 0,
-                    soSinhVienDaRut: 0,
-                    soSinhVienNopDu: 0,
-                    soSinhVienNopThieu: 0
+                    lstIdSinhVienNopDu: [],
+                    lstIdSinhVienNopThieu: [],
+                    lstIdSinhVienChuaNop: [],
+                    lstIdSinhVienDaRut: []
                 });
                 // Lấy ra danh sách sinh viên trúng tuyển thuộc ngành
-                lstSinhVienTrungTuyen.filter(q => q.idNganhTrungTuyen == itemCtdt._id.toString())
+                lstSinhVienTrungTuyen.filter(q => q.idNganhTrungTuyen == itemResult.id)
                     .forEach(itemSinhVien => {
                         if (itemSinhVien.trangThai == EnumTrangThaiHS.CHUA_NOP) {
-                            itemResult.soSinhVienChuaNop++;
+                            itemResult.lstIdSinhVienChuaNop.push(itemSinhVien._id.toString());
                         }
                         else if (itemSinhVien.trangThai == EnumTrangThaiHS.DA_RUT) {
-                            itemResult.soSinhVienDaRut++;
+                            itemResult.lstIdSinhVienDaRut.push(itemSinhVien._id.toString());
                         }
                         else if (itemSinhVien.trangThai == EnumTrangThaiHS.NOP_DU) {
-                            itemResult.soSinhVienNopDu++;
+                            itemResult.lstIdSinhVienNopDu.push(itemSinhVien._id.toString());
                         }
                         else if (itemSinhVien.trangThai == EnumTrangThaiHS.NOP_THIEU) {
-                            itemResult.soSinhVienNopThieu++;
+                            itemResult.lstIdSinhVienNopThieu.push(itemSinhVien._id.toString());
                         }
                     });
                 result.push(itemResult);

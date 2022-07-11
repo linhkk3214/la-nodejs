@@ -48,7 +48,7 @@ export class DanhSachDangKyHocNganh2Controller extends BaseController {
             //Lấy ra danh sách sinh viên thuộc ngành
             const lstSinhVienDkNganh2 = await DanhSachDangKyHocNganh2.find({
                 idNganhDangKy: { $in: lstIdNganhThuocKhoaVien },
-                trangThai: EnumTrangThaiNganh2.DA_DUYET
+                trangThai: EnumTrangThaiNganh2.DA_NHAP_HOC
             });
             lstKhoaVien.forEach(itemKhoaVien => {
                 const itemResult = new BaoCaoSinhVienDkNganh2({
@@ -94,7 +94,7 @@ export class DanhSachDangKyHocNganh2Controller extends BaseController {
             const lstIdNguoiHocThuocKhoaVien = lstSvThuocKhoaVien.map(q => q._id.toString())
             const lstSinhVienDkNganh2 = await DanhSachDangKyHocNganh2.find({
                 idNguoiHoc: { $in: lstIdNguoiHocThuocKhoaVien },
-                trangThai: EnumTrangThaiNganh2.DA_DUYET
+                trangThai: EnumTrangThaiNganh2.DA_NHAP_HOC
             });
             lstKhoaVien.forEach(itemKhoaVien => {
                 const itemResult = new BaoCaoSinhVienDkNganh2({
