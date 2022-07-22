@@ -9,15 +9,16 @@ export interface IUser extends IBaseModel {
     avatar?: String,
     username: String,
     password: String,
-    dob?: Date,
-    age?: Number,
+    ngaySinh?: Date,
+    gioiTinh?: String,
+    sdt?: String,
     idLoai?: String,
     idTinh?: String,
     idHuyen?: String,
     idXa?: String,
-    idDanToc?: String,
-    idTonGiao?: String,
-    idQuocTich?: String,
+    email?: String,
+    ghiChu?: String
+
 }
 
 const schema = new Schema<IUser>({
@@ -27,18 +28,18 @@ const schema = new Schema<IUser>({
     ten: { type: String, required: true },
     ho: { type: String, required: true },
     hoVaTen: { type: String, required: true },
-    avatar: { type: String, required: true },
+    avatar: { type: String, required: false },
     username: { type: String, required: true },
     password: { type: String, required: true },
-    dob: { type: Date, required: false },
-    age: { type: Number, required: false },
+    ngaySinh: { type: Date, required: false },
+    gioiTinh: { type: String, required: false },
+    sdt: { type: String, required: false },
     idLoai: { type: String, required: false },
     idTinh: { type: String, required: false },
     idHuyen: { type: String, required: false },
     idXa: { type: String, required: false },
-    idDanToc: { type: String, required: false },
-    idTonGiao: { type: String, required: false },
-    idQuocTich: { type: String, required: false },
+    email: { type: String, required: false },
+    ghiChu: { type: String, required: false },
 });
 
 export default model<IUser>('User', schema);

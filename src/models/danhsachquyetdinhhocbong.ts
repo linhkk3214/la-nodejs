@@ -22,7 +22,7 @@ const schema = new Schema<IDanhSachQuyetDinhHocBong>({
     idHocBong: { type: String, required: true },
     idNamHoc: { type: String, required: true },
     idHocKy: { type: String, required: true },
-    soQd: { type: String, required: true },
+    soQd: { type: String, required: false },
     idNguoiKy: { type: String, required: false },
     ngayQd: { type: Date, required: false },
     lstIdNguoiHoc: Array,

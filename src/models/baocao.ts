@@ -26,6 +26,7 @@ export class BaoCaoNguoiHocTheoNganh {
 }
 
 export class BaoCaoNguoiHocTheoKhoa {
+    id: string;
     ten: string;
     // Một số cột dynamic k khai báo được sẽ add sau trong code thống kê
     constructor(init?: BaoCaoNguoiHocTheoKhoa) {

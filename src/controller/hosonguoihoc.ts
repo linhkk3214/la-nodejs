@@ -152,13 +152,13 @@ export class HoSoNguoiHocController extends BaseController {
             const lstTrangThai = await DM_TrangThaiNguoiHoc.find({});
             lstKhoaHoc.forEach(itemKhoaHoc => {
                 const itemResult = new BaoCaoNguoiHocTheoKhoa({
+                    id: itemKhoaHoc._id.toString(),
                     ten: itemKhoaHoc.ten
                 });
                 lstTrangThai.forEach(itemTrangThai => {
-                    // Lấy ra danh sách sinh viên thuộc ngành và có trạng thái là [itemTrangThai._id]
-                    const soSinhVienThoaMan = lstNguoiHoc.filter(q => q.idKhoaHoc == itemKhoaHoc._id.toString()
-                        && q.idTrangThai == itemTrangThai._id.toString()).length;
-                    itemResult[itemTrangThai._id.toString()] = soSinhVienThoaMan;
+                    const lstSinhVienThoaMan = lstNguoiHoc.filter(q => q.idKhoaHoc == itemKhoaHoc._id.toString()
+                        && q.idTrangThai == itemTrangThai._id.toString());
+                    itemResult[itemTrangThai._id.toString()] = lstSinhVienThoaMan.map(q => q._id.toString());
                 });
                 result.push(itemResult);
             });
