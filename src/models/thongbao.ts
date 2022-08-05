@@ -3,11 +3,11 @@ import { Schema, model } from 'mongoose';
 import { IBaseModel } from './base-model';
 
 export interface IThongBao extends IBaseModel {
-    idHe?: Array<String>;
-    idKhoaHoc?: Array<String>;
-    idChuongTrinhDaoTao?: Array<String>,
-    idLopHanhChinh?: Array<String>,
-    idTrangThaiSinhVien?: Array<String>,
+    idHes?: Array<String>;
+    idKhoaHocs?: Array<String>;
+    idChuongTrinhDaoTaos?: Array<String>,
+    idLopHanhChinhs?: Array<String>,
+    idTrangThaiSinhViens?: Array<String>,
     idLoaiThongBao: Number,
     idMucDoThongBao: Number;
     tieuDe: String;
@@ -27,11 +27,11 @@ const schema = new Schema<IThongBao>({
     noiDung: { type: String, required: false },
     ngayPhatHanh: { type: Date, required: false },
     moTaNgan: { type: String, required: false },
-    idHe: Array,
-    idKhoaHoc: Array,
-    idChuongTrinhDaoTao: Array,
-    idLopHanhChinh: Array,
-    idTrangThaiSinhVien: Array,
+    idHes: Array,
+    idKhoaHocs: Array,
+    idChuongTrinhDaoTaos: Array,
+    idLopHanhChinhs: Array,
+    idTrangThaiSinhViens: Array,
     lstFileDinhKem: Array
 });
 

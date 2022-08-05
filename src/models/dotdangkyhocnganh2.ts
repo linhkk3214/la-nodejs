@@ -10,9 +10,9 @@ export interface IDotDangKyHocNganh2 extends IBaseModel {
     idHocKy: String;
     soNgayXacNhan: Number;
     trangThai: Number;
-    idHeDaoTao?: Array<String>;
-    idKhoaHoc?: Array<String>;
-    idNganh?: Array<String>;
+    idHeDaoTaos?: Array<String>;
+    idKhoaHocs?: Array<String>;
+    idNganhs?: Array<String>;
 }
 
 const schema = new Schema<IDotDangKyHocNganh2>({
@@ -26,9 +26,9 @@ const schema = new Schema<IDotDangKyHocNganh2>({
     idHocKy: { type: String, required: true },
     soNgayXacNhan: { type: Number, required: true },
     trangThai: { type: Number, required: true },
-    idHeDaoTao: Array,
-    idKhoaHoc: Array,
-    idNganh: Array
+    idHeDaoTaos: Array,
+    idKhoaHocs: Array,
+    idNganhs: Array
 });
 
 export default model<IDotDangKyHocNganh2>('DotDangKyHocNganh2', schema);

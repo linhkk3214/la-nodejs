@@ -7,13 +7,13 @@ export interface IDotCapNhatHoSoNguoiHoc extends IBaseModel {
     timeTu: Date;
     timeDen: Date;
     ghiChu?: String;
-    idHeDaoTao?: Array<String>;
-    idKhoaHoc?: Array<String>;
-    idKhoaVien?: Array<String>;
-    idNganh?: Array<String>;
-    idLopHanhChinh?: Array<String>;
-    truongDuocSua?: Array<String>;
-    idTpHSSH?: Array<String>;
+    idHeDaoTaos?: Array<String>;
+    idKhoaHocs?: Array<String>;
+    idKhoaViens?: Array<String>;
+    idNganhs?: Array<String>;
+    idLopHanhChinhs?: Array<String>;
+    truongDuocSuas?: Array<String>;
+    idTpHSSHs?: Array<String>;
 }
 
 const schema = new Schema<IDotCapNhatHoSoNguoiHoc>({
@@ -24,13 +24,13 @@ const schema = new Schema<IDotCapNhatHoSoNguoiHoc>({
     timeTu: { type: Date, required: true },
     timeDen: { type: Date, required: true },
     ghiChu: { type: String, required: false },
-    idHeDaoTao: Array,
-    idKhoaHoc: Array,
-    idKhoaVien: Array,
-    idNganh: Array,
-    idLopHanhChinh: Array,
-    truongDuocSua: Array,
-    idTpHSSH: Array,
+    idHeDaoTaos: Array,
+    idKhoaHocs: Array,
+    idKhoaViens: Array,
+    idNganhs: Array,
+    idLopHanhChinhs: Array,
+    truongDuocSuas: Array,
+    idTpHSSHs: Array,
 });
 
 export default model<IDotCapNhatHoSoNguoiHoc>('DotCapNhatHoSoNguoiHoc', schema);
