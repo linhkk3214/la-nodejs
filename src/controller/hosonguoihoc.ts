@@ -3,7 +3,7 @@ import HoSoNguoiHoc, { IHoSoNguoiHoc } from '../models/hosonguoihoc';
 import DanhSachLopHanhChinh from '../models/danhsachlophanhchinh';
 import HoSoNguoiHoc_NhanThan from '../models/hosonguoihoc-nhanthan';
 import mongoose from 'mongoose';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { BaoCaoNguoiHocTheoKhoa, BaoCaoNguoiHocTheoNganh } from '../models/baocao';
 import DM_TrangThaiNguoiHoc from '../models/dm-trangthainguoihoc';
 import DM_KhoaHoc from '../models/dm-khoahoc';

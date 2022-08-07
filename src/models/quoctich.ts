@@ -4,7 +4,6 @@ import { IBaseModel } from './base-model';
 
 export interface IQuocTich extends IBaseModel {
     ten: String,
-    moTa: String,
     soThuTu?: Number,
 }
 

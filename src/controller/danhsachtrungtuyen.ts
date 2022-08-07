@@ -7,7 +7,7 @@ import DM_ChuongTrinhDaoTao from '../models/dm-chuongtrinhdaotao';
 import DotNhapHoc from '../models/dotnhaphoc';
 import { DefaultIdTrangThaiNguoiHoc } from '../base/const';
 import { BaoCaoNhapHoc } from '../models/baocao';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 
 export class DanhSachTrungTuyenController extends BaseController {
     modelOld: IDanhSachTrungTuyen;
@@ -20,7 +20,7 @@ export class DanhSachTrungTuyenController extends BaseController {
         if (isUpdate) {
             this.modelOld = await DanhSachTrungTuyen.findOne({ _id: model._id });
         }
-    }
+    };
 
     override async afterInsert(model: IDanhSachTrungTuyen, body: any): Promise<void> {
         if (model.trangThai == EnumTrangThaiHS.NOP_DU) {
@@ -48,11 +48,11 @@ export class DanhSachTrungTuyenController extends BaseController {
 
         // Lấy ra các chương trình đào tạo gắn với ngành trúng tuyển của sinh viên
         const lstCtdt = await DM_ChuongTrinhDaoTao.find({
-            idNganh: model.idNganhTrungTuyen,
+            _id: model.idNganhTrungTuyen,
             idKhoaHoc: itemDotNhapHoc.idKhoaHoc
         });
 
-        // Lấy ra 1 lớp hành chính bất kỳ thuộc [chương trình đào tạo của ngành trúng tuyển] của sinh viên 
+        // Lấy ra 1 lớp hành chính bất kỳ thuộc [chương trình đào tạo của ngành trúng tuyển] của sinh viên
         const itemLopHanhChinhs = (await DanhSachLopHanhChinh.find({
             idChuongTrinhDaoTao: {
                 $in: lstCtdt.map(q => q._id)

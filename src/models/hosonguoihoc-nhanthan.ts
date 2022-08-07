@@ -15,11 +15,11 @@ export interface IHoSoNguoiHoc_NhanThan extends IBaseModel {
 
 const schema = new Schema<IHoSoNguoiHoc_NhanThan>({
     _id: ObjectId,
-    created: { type: Date, required: true },
+    created: { type: Date, required: false },
     modified: { type: Date, required: false },
-    idNguoiHoc: { type: String, required: true },
-    idMoiQuanHe: { type: Number, required: true },
-    tenNhanThan: { type: String, required: true },
+    idNguoiHoc: { type: String, required: false },
+    idMoiQuanHe: { type: Number, required: false },
+    tenNhanThan: { type: String, required: false },
     ngaySinhNhanThan: { type: Date, required: false },
     ngheNghiepNhanThan: { type: String, required: false },
     sdtNhanThan: { type: String, required: false },

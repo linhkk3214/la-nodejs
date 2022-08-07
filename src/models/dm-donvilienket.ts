@@ -8,6 +8,7 @@ export interface IDM_DonViLienKet extends IBaseModel {
     diaChi: String,
     sdt: String,
     nguoiDaiDien: String,
+    chucVu: String,
     soHopDong: String,
     ghiChu: String,
     dsTaiLieu: Array<String>
@@ -23,6 +24,7 @@ const schema = new Schema<IDM_DonViLienKet>({
     sdt: { type: String, required: false },
     nguoiDaiDien: { type: String, required: false },
     soHopDong: { type: String, required: false },
+    chucVu: { type: String, required: false },
     ghiChu: { type: String, required: false },
     dsTaiLieu: Array,
 });
