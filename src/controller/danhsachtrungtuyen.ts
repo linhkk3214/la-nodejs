@@ -1,6 +1,7 @@
 import { BaseController } from '../base/base-controller';
 import { EnumTrangThaiHS } from '../base/enums';
-import DanhSachTrungTuyen, { IDanhSachTrungTuyen } from '../models/danhsachtrungtuyen';
+import DanhSachTrungTuyen from '../models/danhsachtrungtuyen';
+import { IDanhSachTrungTuyen } from '../models/danhsachtrungtuyen';
 import HoSoNguoiHoc from '../models/hosonguoihoc';
 import DanhSachLopHanhChinh from '../models/danhsachlophanhchinh';
 import DM_ChuongTrinhDaoTao from '../models/dm-chuongtrinhdaotao';

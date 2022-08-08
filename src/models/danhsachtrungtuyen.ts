@@ -98,5 +98,4 @@ const schema = new Schema<IDanhSachTrungTuyen>({
     maSv: { type: String, required: true },
     trangThai: { type: Number, required: true }
 });
-
 export default model<IDanhSachTrungTuyen>('DanhSachTrungTuyen', schema);
