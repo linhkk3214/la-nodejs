@@ -256,7 +256,7 @@ export class BaseController {
         return {
             '$regex': `${JSON.parse(value)}`,
             '$options': 'i'
-        }
+        };
     }
     // #endregion
 }

@@ -4,7 +4,6 @@ import DanhSachTrungTuyen, { IDanhSachTrungTuyen } from '../models/danhsachtrung
 import HoSoNguoiHoc from '../models/hosonguoihoc';
 import DanhSachLopHanhChinh from '../models/danhsachlophanhchinh';
 import DM_ChuongTrinhDaoTao from '../models/dm-chuongtrinhdaotao';
-import DotNhapHoc from '../models/dotnhaphoc';
 import { DefaultIdTrangThaiNguoiHoc } from '../base/const';
 import { BaoCaoNhapHoc } from '../models/baocao';
 import { Response } from 'express';
@@ -44,12 +43,9 @@ export class DanhSachTrungTuyenController extends BaseController {
         const exist = await HoSoNguoiHoc.exists({ maSv: model.maSv });
         if (exist) return;
 
-        const itemDotNhapHoc = await DotNhapHoc.findOne({ _id: model.idDotNhapHoc });
-
         // Lấy ra các chương trình đào tạo gắn với ngành trúng tuyển của sinh viên
         const lstCtdt = await DM_ChuongTrinhDaoTao.find({
-            _id: model.idNganhTrungTuyen,
-            idKhoaHoc: itemDotNhapHoc.idKhoaHoc
+            _id: model.idNganhTrungTuyen
         });
 
         // Lấy ra 1 lớp hành chính bất kỳ thuộc [chương trình đào tạo của ngành trúng tuyển] của sinh viên

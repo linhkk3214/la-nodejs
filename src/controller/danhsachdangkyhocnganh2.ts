@@ -29,7 +29,7 @@ export class DanhSachDangKyHocNganh2Controller extends BaseController {
         res.status(200).json(<any>{
             success: true
         });
-    }
+    };
 
     thongKeTheoDonVi2 = async (req, res: Response) => {
         const [query, filters] = this.createQueryWithFilterFromBody(DM_KhoaVien, req.body);
@@ -44,8 +44,8 @@ export class DanhSachDangKyHocNganh2Controller extends BaseController {
             const lstThuocKhoaVien = await DM_ChuongTrinhDaoTao.find({
                 idKhoaVien: { $in: lstIdKhoaVien }
             });
-            const lstIdNganhThuocKhoaVien = lstThuocKhoaVien.map(q => q._id.toString())
-            //Lấy ra danh sách sinh viên thuộc ngành
+            const lstIdNganhThuocKhoaVien = lstThuocKhoaVien.map(q => q._id.toString());
+            // Lấy ra danh sách sinh viên thuộc ngành
             const lstSinhVienDkNganh2 = await DanhSachDangKyHocNganh2.find({
                 idNganhDangKy: { $in: lstIdNganhThuocKhoaVien },
                 trangThai: EnumTrangThaiNganh2.DA_NHAP_HOC
@@ -91,7 +91,7 @@ export class DanhSachDangKyHocNganh2Controller extends BaseController {
             const lstSvThuocKhoaVien = await HoSoNguoiHoc.find({
                 idKhoaVien: { $in: lstIdKhoaVien }
             });
-            const lstIdNguoiHocThuocKhoaVien = lstSvThuocKhoaVien.map(q => q._id.toString())
+            const lstIdNguoiHocThuocKhoaVien = lstSvThuocKhoaVien.map(q => q._id.toString());
             const lstSinhVienDkNganh2 = await DanhSachDangKyHocNganh2.find({
                 idNguoiHoc: { $in: lstIdNguoiHocThuocKhoaVien },
                 trangThai: EnumTrangThaiNganh2.DA_NHAP_HOC
